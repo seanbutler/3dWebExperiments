@@ -1,0 +1,168 @@
+<html>
+
+    <body>
+        <canvas>
+
+        </canvas>
+    </body>
+
+<script>
+
+// ------------------------------------------------------------------
+
+var canvas = document.querySelector('canvas');
+var context = canvas.getContext('2d');
+
+var size = Math.min(window.innerWidth, window.innerHeight)  ;
+
+var width = 1200;
+var height = 400;
+
+var dpr = window.devicePixelRatio;
+canvas.width = size * dpr;
+canvas.height = size * dpr;
+context.scale(dpr, dpr);
+
+// ------------------------------------------------------------------
+
+var lineWidths = [12, 24, 36];
+var strokeStyles = ['#777777', '#FF7700', '#FF7700'];
+var fillStyles = ["#000000",  "#000000",  "#000000",  '#777777', '#FF7700', "#FF7700" ];
+
+// ------------------------------------------------------------------
+
+var things = [];
+var minRadius = size * (1/32);
+var maxRadius = size * (1/8);
+
+var totalThings = 8;
+
+var createCircleAttempts = size;
+
+// ------------------------------------------------------------------
+
+function createThing() {
+
+  var newCircle;
+  var circleSafeToDraw = false;
+
+  for(var tries = 0; tries < createCircleAttempts; tries++) {
+    newCircle = {
+      x: Math.floor(maxRadius + Math.random() * width/2),
+      y: Math.floor(maxRadius + Math.random() * height/2),
+      radius: minRadius
+    }
+
+    // if(doesThingInterract(newCircle)) {
+    //   continue;
+    // } else {
+      circleSafeToDraw = true;
+      break;
+    // }
+  }
+
+  if(!circleSafeToDraw) {
+    return;
+  }
+
+  for(var radiusSize = minRadius; radiusSize < maxRadius; radiusSize++) {
+    newCircle.radius = radiusSize;
+    if(doesThingInterract(newCircle)){
+      newCircle.radius--;
+
+      break;
+    }
+  }
+
+  things.push(newCircle);
+}
+
+// ------------------------------------------------------------------
+function fy(a, b, c, d) {
+    //array,placeholder,placeholder,placeholder
+    c=a.length;
+    while(c)
+        b=Math.random()*(--c+1)|0,d=a[c],a[c]=a[b],a[b]=d
+    return a;
+}
+
+function drawThing(thing) {
+
+    context.lineWidth = fy(lineWidths)[0];
+    context.strokeStyle = fy(strokeStyles)[0];
+    context.fillStyle = fy(fillStyles)[0];
+
+    if ( context.fillStyle == "#000000" ) {
+
+        context.beginPath();
+        context.rect(thing.x-thing.radius,
+                    thing.y-thing.radius,
+                    2 * thing.radius,
+                    2 * thing.radius);
+        context.stroke();
+
+    } else {
+
+        context.beginPath();
+        context.rect(thing.x-thing.radius,
+                thing.y-thing.radius,
+                2 * thing.radius,
+                2 * thing.radius);
+        context.fill();
+
+    }
+
+    // context.beginPath();
+    // context.arc(thing.x, thing.y, thing.radius, 0, Math.PI*2);
+    // context.stroke();
+}
+
+
+// ------------------------------------------------------------------
+
+function doesThingInterract(thing) {
+    // return false;
+  for(var i = 0; i < things.length; i++) {
+    var other = things[i];
+
+    var a = thing.radius + other.radius;
+    var x = thing.x - other.x;
+    var y = thing.y - other.y;
+
+    if (a*a >= (x*x) + (y*y)) {
+      return true;
+    }
+  }
+
+  if(thing.x + thing.radius >= size ||
+     thing.x - thing.radius <= 0) {
+    return true;
+  }
+
+  if(thing.y + thing.radius >= size ||
+      thing.y - thing.radius <= 0) {
+    return true;
+  }
+
+  return false;
+}
+
+
+// ------------------------------------------------------------------
+
+
+// context.rotate(Math.PI/4)
+for( var i = 0; i < totalThings; i++ ) {
+  createThing();
+}
+
+// context.rotate(Math.PI/4)
+for( var j = 0; j < totalThings; j++ ) {
+  drawThing(things[j]);
+}
+
+
+
+</script>
+
+</html>
