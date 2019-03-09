@@ -3,6 +3,8 @@
 
 ## Three JS
 
+See http://www.seanbutler.net/3DWebTechCourse
+
 ### Intro Stuff
 
  - [Basic Scene](BasicScene)
@@ -14,19 +16,19 @@
 
 ### Advanced
  - [Loading JSON Meshes](Meshes)
- - [Animating JSON Meshes](Animating Meshes)
+ - [Animating JSON Meshes](AnimatingMeshes)
 
-### Procedural Scene
+### Procedural Scenes
 
- - [Ocean Island](Island)
+ - [Ocean Island](Island) WIP
 
 ## Canvas
 
-### Inspired from https://generativeartistry.com/
+Inspired from https://generativeartistry.com/
 
-- [Packing](Packing)
+- [C=64 Maze](C64)
+- [Bubbles](Packing)
 - [Square](Square)
-- [C64](C64)
 
 
 
