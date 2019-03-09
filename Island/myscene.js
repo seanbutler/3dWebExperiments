@@ -164,7 +164,7 @@ class Avatar extends Entity{
 
 // ---------------------------------------------------------------------------
 
-class EnvironmentEntity extends Entity{
+class WaterSurface extends Entity{
     constructor(parent) {
         super();
 
@@ -340,7 +340,7 @@ class DirectionalLightEntity extends Entity{
 var avatar = new Avatar(scene, 0, 5, 0);
 entities.push(avatar);
 
-entities.push(new EnvironmentEntity(scene));
+entities.push(new WaterSurface(scene));
 // entities.push(new AmbientLightEntity(0x333333));
 
 // entities.push(new DirectionalLightEntity(scene, 0, 10, 0, 0xFFFFFF, true));
