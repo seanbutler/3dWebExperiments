@@ -6,25 +6,28 @@
 ### Intro Stuff
 
  - [Basic Scene](BasicScene)
- - [Input Basic](InputBasic)
- - [Input Smooth](InputSmooth)
- <!-- - [Spheres](packing) -->
- - [Trees](Trees)
- - [Shadows](Shadows)
+ - [Lighting, Materials and Shadows](Shadows)
+ - [Basic Event Based Input](InputBasic)
+ - [Better Stored Input State](InputSmooth)
+ <!-- - [Spheres](Spheres) -->
+ - [Grouped Shapes](Trees)
 
 ### Advanced
- - [Meshes](Meshes)
- - [AnimatingMeshes](Animating Meshes)
+ - [Loading JSON Meshes](Meshes)
+ - [Animating JSON Meshes](Animating Meshes)
 
 ### Procedural Scene
 
- - [Island](Island)
+ - [Ocean Island](Island)
 
 ## Canvas
+
+### Inspired from https://generativeartistry.com/
 
 - [Packing](Packing)
 - [Square](Square)
 - [C64](C64)
+
 
 
 ## Stupidity
