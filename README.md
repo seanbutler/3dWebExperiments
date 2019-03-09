@@ -5,16 +5,16 @@
 
 ### Intro Stuff
 
- - [Basic Scene](Basic Scene)
- - [Input Basic](InputBasic)
- - [Input Smooth](Input Smooth)
+ - [BasicScene](Basic Scene)
+ - [InputBasic](InputBasic)
+ - [InputSmooth](Input Smooth)
  <!-- - [Spheres](packing) -->
  - [Trees](Trees)
  - [Shadows](Shadows)
 
 ### Advanced
  - [Meshes](Meshes)
- - [Animating Meshes](AnimatingMeshes)
+ - [AnimatingMeshes](Animating Meshes)
 
 ### Procedural Scene
 
@@ -29,4 +29,4 @@
 
 ## Stupidity
 
- - [Alert](Alert Joke)
+ - [Alert!](Alert)
