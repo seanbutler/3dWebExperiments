@@ -5,9 +5,9 @@
 
 ### Intro Stuff
 
- - [BasicScene](Basic Scene)
- - [InputBasic](InputBasic)
- - [InputSmooth](Input Smooth)
+ - [Basic Scene](BasicScene)
+ - [Input Basic](InputBasic)
+ - [Input Smooth](InputSmooth)
  <!-- - [Spheres](packing) -->
  - [Trees](Trees)
  - [Shadows](Shadows)
@@ -29,4 +29,4 @@
 
 ## Stupidity
 
- - [Alert!](Alert)
+ - [Alert Joke](Alert)
