@@ -13,21 +13,21 @@
 var canvas = document.querySelector('canvas');
 var context = canvas.getContext('2d');
 
-var size = Math.min(window.innerWidth, window.innerHeight)  ;
+var width = window.innerWidth;
+var height = window.innerHeight;
 
-var width = 1200;
-var height = 400;
+var size = Math.min(width, height)  ;
 
 var dpr = window.devicePixelRatio;
-canvas.width = size * dpr;
-canvas.height = size * dpr;
+canvas.width = width * dpr;
+canvas.height = height * dpr;
 context.scale(dpr, dpr);
 
 // ------------------------------------------------------------------
 
-var lineWidths = [12, 24, 36];
+var lineWidths = [size/32];
 var strokeStyles = ['#777777', '#FF7700', '#FF7700'];
-var fillStyles = ["#000000",  "#000000",  "#000000",  '#777777', '#FF7700', "#FF7700" ];
+var fillStyles = ["#000000",  "#000000",  '#777777', "#FF7700" ];
 
 // ------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ var things = [];
 var minRadius = size * (1/32);
 var maxRadius = size * (1/8);
 
-var totalThings = 8;
+var totalThings = size * (1/32);
 
 var createCircleAttempts = size;
 
@@ -48,17 +48,17 @@ function createThing() {
 
   for(var tries = 0; tries < createCircleAttempts; tries++) {
     newCircle = {
-      x: Math.floor(maxRadius + Math.random() * width/2),
-      y: Math.floor(maxRadius + Math.random() * height/2),
+      x: Math.floor(Math.random() * width - maxRadius),
+      y: Math.floor(Math.random() * height - maxRadius),
       radius: minRadius
     }
 
-    // if(doesThingInterract(newCircle)) {
-    //   continue;
-    // } else {
+    if(doesThingInterract(newCircle)) {
+      continue;
+    } else {
       circleSafeToDraw = true;
       break;
-    // }
+    }
   }
 
   if(!circleSafeToDraw) {
@@ -69,7 +69,6 @@ function createThing() {
     newCircle.radius = radiusSize;
     if(doesThingInterract(newCircle)){
       newCircle.radius--;
-
       break;
     }
   }
@@ -112,6 +111,8 @@ function drawThing(thing) {
 
     }
 
+    // context.lineWidth = 1;
+    // context.strokeStyle = "green";
     // context.beginPath();
     // context.arc(thing.x, thing.y, thing.radius, 0, Math.PI*2);
     // context.stroke();
@@ -151,7 +152,6 @@ function doesThingInterract(thing) {
 // ------------------------------------------------------------------
 
 
-// context.rotate(Math.PI/4)
 for( var i = 0; i < totalThings; i++ ) {
   createThing();
 }

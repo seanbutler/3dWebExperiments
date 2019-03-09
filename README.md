@@ -8,8 +8,9 @@
  - [Basic Scene](Basic Scene)
  - [Input Basic](InputBasic)
  - [Input Smooth](Input Smooth)
- - [Spheres](packing)
+ <!-- - [Spheres](packing) -->
  - [Trees](Trees)
+ - [Shadows](Shadows)
 
 ### Advanced
  - [Meshes](Meshes)
@@ -19,10 +20,11 @@
 
  - [Island](Island)
 
-
 ## Canvas
 
-- [Packing](packing)
+- [Packing](Packing)
+- [Square](Square)
+- [C64](C64)
 
 
 ## Stupidity
