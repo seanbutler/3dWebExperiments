@@ -208,13 +208,13 @@ class WaterSurface extends Entity{
                 var time = Date.now() * 0.001;
                 vertex.y = 0;
 
-                vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1)) * 0.2;
-                vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3)) * 0.2;
-                vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5)) * 0.2;
+                vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1)) * 0.125;
+                vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3)) * 0.125;
+                vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5)) * 0.125;
 
-                vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) ) * 0.2;
-                vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 )) * 0.2;
-                vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) ) * 0.2;
+                vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) ) * 0.125;
+                vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 )) * 0.125;
+                vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) ) * 0.125;
 
                 // vertex.y += 1.5 * Math.sin ( ( 0.150 * x ) + 1 * 1);
                 // vertex.y += 0.5 * Math.sin ( ( 0.500 * x ) + 1 * 3);
@@ -280,7 +280,7 @@ class VolcanicIsland extends Entity {
         this.position.z = 0;
 
         var color = new THREE.Color();
-        this.geometry = new THREE.PlaneBufferGeometry( 100, 100, 100, 100 );
+        this.geometry = new THREE.PlaneBufferGeometry( 200, 200, 100, 100 );
         this.geometry.rotateX( - Math.PI / 2 );
 
         // var positions = this.geometry.attributes.position;
@@ -304,23 +304,27 @@ class VolcanicIsland extends Entity {
         parent.add(this);
 
 
-        var maxislands = Math.floor(Math.random() * 5 )
+        // var maxislands = Math.floor(Math.random() * 5 )
+        var maxislands = 10;
         for ( var islands = 0; islands < maxislands; islands++)
         {
-            var p1 = 500000;
+            var p1 = 1000000;
             var p2 = 1000000;
+            var p3 = 1000000;
 
-            var x1 = 40.0;
-            var x2 = 40.0;
+            var x1 = 50.0;
+            var x2 = x1 + (Math.random() * 50.0) + (Math.random() * 50.0);
 
-            var z1 = 40.0;
-            var z2 = 40.0;
+            var z1 = 50.0;
+            var z2 = z1 + Math.random() * 50.0 - Math.random() * 50.0;
 
-            this.generate(Math.random() * p1 + Math.random() * p2,
-                            new THREE.Vector3(Math.random()*x1 + Math.random() * x2,
-                                                0,
-                                                Math.random()*z1 + Math.random()*z2)
-                        );
+            this.generate(  p3, new THREE.Vector3(x2, 0, z2) );
+
+            // this.generate(Math.random() * p1 + Math.random() * p2 + Math.random() * p3,
+            //                 new THREE.Vector3(50,
+            //                                     0,
+            //                                     50)
+            //             );
 
         }
     }
@@ -332,13 +336,13 @@ class VolcanicIsland extends Entity {
 
         for (var n=0; n<particles; n++ )
         {
-            var angle = (( Math.random() *  Math.PI/2) + ( Math.random() *  Math.PI/2)) /2;
+            var angle = (( Math.random() *  Math.PI/2) + ( Math.random() *  Math.PI/2)) /3;
 
             var direction = Math.random() * ( 2 * Math.PI);
-            var velocity = 1 + Math.random() * 2;
+            var velocity = 1 + (Math.random() * 2);
 
             // DISTANCE CALCULATION FROM https://keisan.casio.com/exec/system/1225079475
-            var distance = ( (velocity * velocity) * Math.sin( 2 * angle ) ) / 9.8;
+            var distance = ( (velocity * velocity) * Math.sin( 2 * angle ) ) / 10;
 
             // COORDINATES CALCULATION FROM https://www.theclassroom.com/coordinates-distances-angles-2732.html
             // soh, cah, toa
@@ -368,6 +372,10 @@ class VolcanicIsland extends Entity {
 
     update() {
         super.update();
+
+
+
+
     }
 }
 
