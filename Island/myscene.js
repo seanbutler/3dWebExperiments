@@ -2,18 +2,17 @@
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.x= 0;
-camera.position.y = 5;
-camera.position.z = 2;
-
+camera.position.set(0, 50, 100);
+var controls = new THREE.OrbitControls( camera );
+controls.update();
 // ---------------------------------------------------------------------------
 
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 renderer.shadowMap.enabled = true;
-// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.setClearColor( 0xAAAAff);
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.setClearColor( 0xAAAAFF);
 
 // ---------------------------------------------------------------------------
 
@@ -26,7 +25,6 @@ class Service{
 };
 
 // ---------------------------------------------------------------------------
-
 
 class KeyboardService extends Service{
     constructor(){
@@ -150,10 +148,10 @@ class Avatar extends Entity{
 
             this.mesh.rotation.y = 0.075 * Math.sin(Date.now() * 0.001);
 
-            camera.position.x = this.position.x;
-            camera.position.y = this.position.y + 1.0;
-            camera.position.z = this.position.z - 6.0;
-            camera.rotation.y = Math.PI;
+            // camera.position.x = this.position.x;
+            // camera.position.y = this.position.y + 1.0;
+            // camera.position.z = this.position.z - 6.0;
+            // camera.rotation.y = Math.PI;
             this.animate();
 
         }
@@ -171,7 +169,6 @@ class WaterSurface extends Entity{
 		var color = new THREE.Color();
         this.geometry = new THREE.PlaneBufferGeometry( 200, 200, 100, 100 );
         this.geometry.rotateX( - Math.PI / 2 );
-        // this.geometry.dynamic = true;
 
         var positions = this.geometry.attributes.position;
         var vertex = new THREE.Vector3();
@@ -183,7 +180,8 @@ class WaterSurface extends Entity{
                                         shininess: 96,
                                         flatShading: true,
                                         transparent: true,
-                                        opacity: 0.8
+                                        opacity: 0.95,
+                                        // wireframe: true,
                                     } );
 
         // this.floorMaterial.shading = THREE.FlatShading;
@@ -210,23 +208,21 @@ class WaterSurface extends Entity{
                 var time = Date.now() * 0.001;
                 vertex.y = 0;
 
-                vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1));
-                vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3));
-                vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5));
+                vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1)) * 0.2;
+                vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3)) * 0.2;
+                vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5)) * 0.2;
 
-                vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) );
-                vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 ));
-                vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) );
-
+                vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) ) * 0.2;
+                vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 )) * 0.2;
+                vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) ) * 0.2;
 
                 // vertex.y += 1.5 * Math.sin ( ( 0.150 * x ) + 1 * 1);
                 // vertex.y += 0.5 * Math.sin ( ( 0.500 * x ) + 1 * 3);
                 // vertex.y += 0.1 * Math.sin ( ( 0.800 * x ) + 1 * 5);
-                //
+
                 // vertex.y += 1.5 * Math.sin ( ( 0.150 * y ) + 1 * 1.7);
                 // vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + 1 * 2.3);
                 // vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + 1 * 4.1);
-
 
             	positions.setXYZ( pos, vertex.x, vertex.y, vertex.z );
             }
@@ -234,15 +230,15 @@ class WaterSurface extends Entity{
 
         this.geometry.attributes.position.needsUpdate = true;
 
-        this.position.x = avatar.position.x;
-        this.position.y = 0;
-        this.position.z = avatar.position.z;
+        // this.position.x = avatar.position.x;
+        // this.position.y = 0;
+        // this.position.z = avatar.position.z;
     }
 }
 
 // ---------------------------------------------------------------------------
 
-class Obstacle extends Entity {
+class BasicIsland extends Entity {
     constructor(parent, x, y, z) {
         super();
 
@@ -266,6 +262,108 @@ class Obstacle extends Entity {
 
         this.add(this.mesh);
         parent.add(this);
+    }
+
+    update() {
+        super.update();
+    }
+}
+
+// ---------------------------------------------------------------------------
+
+class VolcanicIsland extends Entity {
+    constructor(parent) {
+        super();
+
+        this.position.x = 0;
+        this.position.y = -5;
+        this.position.z = 0;
+
+        var color = new THREE.Color();
+        this.geometry = new THREE.PlaneBufferGeometry( 100, 100, 100, 100 );
+        this.geometry.rotateX( - Math.PI / 2 );
+
+        // var positions = this.geometry.attributes.position;
+        // var vertex = new THREE.Vector3();
+        // var colors = [];
+
+        this.material=new THREE.MeshPhongMaterial( {
+                                        color: 0x777777,
+                                        specular: 0x777777,
+                                        shininess: 1,
+                                        flatShading: true,
+                                        transparent: false,
+                                        // wireframe: true,
+                                    } );
+
+        this.mesh = new THREE.Mesh( this.geometry, this.material );
+        this.mesh.receiveShadow = true;
+        this.mesh.castShadow = false;
+
+        this.add( this.mesh );
+        parent.add(this);
+
+
+        var maxislands = Math.floor(Math.random() * 5 )
+        for ( var islands = 0; islands < maxislands; islands++)
+        {
+            var p1 = 500000;
+            var p2 = 1000000;
+
+            var x1 = 40.0;
+            var x2 = 40.0;
+
+            var z1 = 40.0;
+            var z2 = 40.0;
+
+            this.generate(Math.random() * p1 + Math.random() * p2,
+                            new THREE.Vector3(Math.random()*x1 + Math.random() * x2,
+                                                0,
+                                                Math.random()*z1 + Math.random()*z2)
+                        );
+
+        }
+    }
+
+    generate(particles, centre) {
+
+        var positions = this.geometry.attributes.position;
+        var vertex = new THREE.Vector3();
+
+        for (var n=0; n<particles; n++ )
+        {
+            var angle = (( Math.random() *  Math.PI/2) + ( Math.random() *  Math.PI/2)) /2;
+
+            var direction = Math.random() * ( 2 * Math.PI);
+            var velocity = 1 + Math.random() * 2;
+
+            // DISTANCE CALCULATION FROM https://keisan.casio.com/exec/system/1225079475
+            var distance = ( (velocity * velocity) * Math.sin( 2 * angle ) ) / 9.8;
+
+            // COORDINATES CALCULATION FROM https://www.theclassroom.com/coordinates-distances-angles-2732.html
+            // soh, cah, toa
+
+            var deltax = Math.sin(direction) * distance;
+            var deltaz = Math.cos(direction) * distance;
+
+            // console.log(deltax, deltaz);
+
+            var coords = new THREE.Vector3();
+            coords.x = Math.floor(centre.x + deltax * 50);
+            coords.z = Math.floor(centre.z + deltaz * 50);
+
+            var meshVertexIndex = ( coords.x * 101 ) + coords.z;
+
+            var meshVertex = new THREE.Vector3();
+            meshVertex.fromBufferAttribute( positions, meshVertexIndex );
+            // meshVertex.x =   coords.x;
+            meshVertex.y += 0.005;
+            // meshVertex.z = coords.z;
+
+            positions.setXYZ( meshVertexIndex, meshVertex.x, meshVertex.y, meshVertex.z );
+            this.geometry.attributes.position.needsUpdate = true;
+        }
+
     }
 
     update() {
@@ -326,19 +424,19 @@ class DirectionalLightEntity extends Entity{
   }
 
   update() {
-      var time = Date.now() * 0.001;
-      this.light.position.set(
-                            0,
-                            1000 * Math.sin ( time * 1/6),
-                            1000 * Math.cos ( time * 1/6),
-                        );
+      // var time = Date.now() * 0.001;
+      // this.light.position.set(
+      //                       0,
+      //                       1000 * Math.sin ( time * 1/6),
+      //                       1000 * Math.cos ( time * 1/6),
+      //                   );
   }
 }
 
 // ---------------------------------------------------------------------------
 
-var avatar = new Avatar(scene, 0, 5, 0);
-entities.push(avatar);
+// var avatar = new Avatar(scene, 0, 5, 0);
+// entities.push(avatar);
 
 entities.push(new WaterSurface(scene));
 // entities.push(new AmbientLightEntity(0x333333));
@@ -346,9 +444,11 @@ entities.push(new WaterSurface(scene));
 // entities.push(new DirectionalLightEntity(scene, 0, 10, 0, 0xFFFFFF, true));
 entities.push(new DirectionalLightEntity(scene, 1000, 1000, 0, 0xFFAA66, true));
 
-entities.push(new Obstacle(scene, 0, 0, 0));
-entities.push(new Obstacle(scene, 20, 5, 0));
-entities.push(new Obstacle(scene, 0, 3, 20));
+// entities.push(new BasicIsland(scene, 0, 0, 0));
+// entities.push(new BasicIsland(scene, 20, 5, 0));
+// entities.push(new BasicIsland(scene, 0, 3, 20));
+
+entities.push(new VolcanicIsland(scene, 0, -10, 0));
 
 // ---------------------------------------------------------------------------
 
@@ -357,6 +457,8 @@ var animate = function () {
     for (thing of entities) {
          thing.update();
      }
+
+     controls.update();
     renderer.render( scene, camera );
     requestAnimationFrame( animate );
 };
