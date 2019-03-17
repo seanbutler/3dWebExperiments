@@ -26,10 +26,10 @@ See http://www.seanbutler.net/3DWebTechCourse
 
 Inspired from https://generativeartistry.com/
 
+- [Lines](Lines)
+- [Square](Square)
 - [C=64 Maze](C64)
 - [Bubbles](Packing)
-- [Square](Square)
-
 
 
 ## Stupidity
