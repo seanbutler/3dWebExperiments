@@ -236,14 +236,15 @@ class AmbientLightEntity extends Entity{
   }
 }
 
+// ---------------------------------------------------------------------------
+
 class Sun extends Entity{
   constructor(parent, c=0xFFFFAA, s=true) {
         super()
 
         this.light = new THREE.DirectionalLight( c, 1 );
-        // this.light.position.set( x, y, z );
 
-        this.light.castShadow = true;            // default false
+        this.light.castShadow = s;            // default false
 
         this.light.shadow.mapSize.width = 256;
         this.light.shadow.mapSize.height = 256;
@@ -289,9 +290,8 @@ class Moon extends Entity{
         super()
 
         this.light = new THREE.DirectionalLight( c, 1 );
-        // this.light.position.set( x, y, z );
 
-        this.light.castShadow = true;            // default false
+        this.light.castShadow = s;            // default false
 
         this.light.shadow.mapSize.width = 256;
         this.light.shadow.mapSize.height = 256;
