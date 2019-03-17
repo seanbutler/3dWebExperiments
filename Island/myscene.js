@@ -2,7 +2,7 @@
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.set(0, 100, 100);
+camera.position.set(0, 15, 125);
 var controls = new THREE.OrbitControls( camera );
 controls.update();
 // ---------------------------------------------------------------------------
@@ -14,11 +14,14 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setClearColor( 0xAAAAFF);
 
+
 // ---------------------------------------------------------------------------
+
 
 var entities = []
 
 class Entity extends THREE.Object3D{
+
   constructor() {
       super();
   }
@@ -36,6 +39,7 @@ class WaterSurface extends Entity{
     constructor(parent) {
         super();
         this.size = 200;
+        this.waves = true;
 
 		var color = new THREE.Color();
         this.geometry = new THREE.PlaneBufferGeometry( 200, 200, this.size, this.size );
@@ -60,6 +64,8 @@ class WaterSurface extends Entity{
         this.mesh.receiveShadow = true;
         this.mesh.castShadow = false;
 
+        this.speed = 0.001;
+
         this.add( this.mesh );
         parent.add(this);
     }
@@ -67,46 +73,37 @@ class WaterSurface extends Entity{
     update() {
         super.update();
 
-        var positions = this.geometry.attributes.position;
-        var vertex = new THREE.Vector3();
+        if ( this.waves ) {
 
-        for ( var x = 0; x < this.size+1; x++ ) {
-            for ( var y = 0; y < this.size+1; y++ ) {
 
-                var pos = ( x * (this.size+1) ) + y;
+            var positions = this.geometry.attributes.position;
+            var vertex = new THREE.Vector3();
 
-            	vertex.fromBufferAttribute( positions, pos );
-                var time = Date.now() * 0.001;
-                vertex.y = 0;
+            for ( var x = 0; x < this.size+1; x++ ) {
+                for ( var y = 0; y < this.size+1; y++ ) {
 
-                vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1)) * 0.125;
-                vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3)) * 0.125;
-                vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5)) * 0.125;
+                    var pos = ( x * (this.size+1) ) + y;
 
-                vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) ) * 0.125;
-                vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 )) * 0.125;
-                vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) ) * 0.125;
+                	vertex.fromBufferAttribute( positions, pos );
+                    var time = Date.now() * this.speed;
+                    vertex.y = 0;
 
-                // vertex.y += 1.5 * Math.sin ( ( 0.150 * x ) + 1 * 1);
-                // vertex.y += 0.5 * Math.sin ( ( 0.500 * x ) + 1 * 3);
-                // vertex.y += 0.1 * Math.sin ( ( 0.800 * x ) + 1 * 5);
+                    vertex.y += 2.70 * Math.sin ( ( 0.170 * x ) + (time * 1)) * 0.125;
+                    vertex.y += 0.40 * Math.sin ( ( 0.410 * x ) + (time * 3)) * 0.125;
+                    vertex.y += 0.15 * Math.sin ( ( 0.710 * x ) + (time * 5)) * 0.125;
 
-                // vertex.y += 1.5 * Math.sin ( ( 0.150 * y ) + 1 * 1.7);
-                // vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + 1 * 2.3);
-                // vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + 1 * 4.1);
+                    vertex.y += 2.5 * Math.sin ( ( 0.150 * y ) + ( time * 1.7 ) ) * 0.125;
+                    vertex.y += 0.4 * Math.sin ( ( 0.500 * y ) + ( time * 2.3 )) * 0.125;
+                    vertex.y += 0.1 * Math.sin ( ( 0.800 * y ) + ( time * 4.1 ) ) * 0.125;
 
-            	positions.setXYZ( pos, vertex.x, vertex.y, vertex.z );
+                	positions.setXYZ( pos, vertex.x, vertex.y, vertex.z );
+                }
             }
+
+            this.geometry.attributes.position.needsUpdate = true;
         }
-
-        this.geometry.attributes.position.needsUpdate = true;
-
-        // this.position.x = avatar.position.x;
-        // this.position.y = 0;
-        // this.position.z = avatar.position.z;
     }
 }
-
 // ---------------------------------------------------------------------------
 
 class Volcano extends Entity {
@@ -121,10 +118,10 @@ class Volcano extends Entity {
         this.n=0;
 
         this.x1 = this.size * 0.25;
-        this.x2 = this.x1 + (Math.random() * this.x1) + (Math.random() * this.x1);
+        this.x2 = ((Math.random() * this.size) + (Math.random() * this.size))/2;
 
         this.z1 = this.size * 0.25;
-        this.z2 = this.z1 + (Math.random() * this.z1 - Math.random() * this.z1);
+        this.z2 = ((Math.random() * this.size) + (Math.random() * this.size))/2;
         parent.add(this);
     }
 
@@ -134,6 +131,7 @@ class Volcano extends Entity {
         var positions = this.geometry.attributes.position;
         var vertex = new THREE.Vector3();
         var increment = this.rate;
+        var minvel = 0.5 + Math.random();
 
         if (this.n<this.particles)
         {
@@ -145,7 +143,7 @@ class Volcano extends Entity {
                 var angle = (( Math.random() *  Math.PI/2) + ( Math.random() *  Math.PI/2)) /3;
 
                 var direction = Math.random() * ( 2 * Math.PI);
-                var velocity = 1 + (Math.random() * 2);
+                var velocity = minvel + (Math.random() * 2);
 
                 // DISTANCE CALCULATION FROM https://keisan.casio.com/exec/system/1225079475
                 var distance = ( (velocity * velocity) * Math.sin( 2 * angle ) ) / 10;
@@ -188,8 +186,10 @@ class OceanBed extends Entity {
         super();
         this.size = 64;
 
+        this.voffset = -5;
+
         this.position.x = 0;
-        this.position.y = -5;
+        this.position.y = this.voffset;
         this.position.z = 0;
 
         var color = new THREE.Color();
@@ -198,7 +198,7 @@ class OceanBed extends Entity {
 
         this.material=new THREE.MeshPhongMaterial( {
                                         color: 0x777777,
-                                        specular: 0x777777,
+                                        specular: 0x333333,
                                         shininess: 1,
                                         flatShading: true,
                                         transparent: false,
@@ -207,16 +207,16 @@ class OceanBed extends Entity {
 
         this.mesh = new THREE.Mesh( this.geometry, this.material );
         this.mesh.receiveShadow = true;
-        this.mesh.castShadow = false;
+        this.mesh.castShadow = true;
 
         this.add( this.mesh );
         parent.add(this);
-
     }
-
 
     update() {
         super.update();
+        this.position.y = this.voffset;
+
     }
 }
 
@@ -225,44 +225,90 @@ class OceanBed extends Entity {
 class AmbientLightEntity extends Entity{
   constructor(c) {
         super()
-
-        this.light = new THREE.AmbientLight( c );
+        this.color = c;
+        this.light = new THREE.AmbientLight( this.color );
 
         // var lightHelper = new THREE.AmbientlLightHelper( this.light, 5 );
         // scene.add(lightHelper)
-
 
         this.add( this.light );
         scene.add( this );
   }
 }
 
-class DirectionalLightEntity extends Entity{
-  constructor(parent, x, y, z, c, s) {
+class Sun extends Entity{
+  constructor(parent, c=0xFFFFAA, s=true) {
         super()
 
         this.light = new THREE.DirectionalLight( c, 1 );
-        this.light.position.set( x, y, z );
+        // this.light.position.set( x, y, z );
 
         this.light.castShadow = true;            // default false
 
-        this.light.shadow.mapSize.width = 1024;
-        this.light.shadow.mapSize.height = 1024;
+        this.light.shadow.mapSize.width = 256;
+        this.light.shadow.mapSize.height = 256;
 
-        this.light.shadow.camera.near = 700;    // default
-        this.light.shadow.camera.far = 1200;     // default
+        this.light.shadow.camera.near = 400;    // default
+        this.light.shadow.camera.far = 600;     // default
 
-        this.light.shadow.camera.left     = -50;
-        this.light.shadow.camera.right    =  50;
-        this.light.shadow.camera.top      =  50;
-        this.light.shadow.camera.bottom   = -50;
-        this.light.shadowDarkness = 0.75;
+        this.light.shadow.camera.left     = -100;
+        this.light.shadow.camera.right    =  100;
+        this.light.shadow.camera.top      =  100;
+        this.light.shadow.camera.bottom   = -100;
+        this.light.shadowDarkness = 0.5;
 
         // var directionalLightHelper = new THREE.DirectionalLightHelper( this.light, 5 );
         // scene.add(directionalLightHelper)
         // var shadowHelper = new THREE.CameraHelper( this.light.shadow.camera );
         // scene.add( shadowHelper );
 
+		this.light.add( new THREE.Mesh(
+                            new THREE.SphereBufferGeometry( 40, 8, 8 ),
+                            new THREE.MeshBasicMaterial( { color: 0xFFFF00 } )
+                            )
+                        );
+
+        scene.add( this.light );
+        scene.add( this.light.target );
+
+        parent.add(this);
+  }
+
+  update() {
+      var time = Date.now() * 0.001;
+      this.light.position.set(
+                            0,
+                            500 * Math.sin ( time * 1/4),
+                            500 * Math.cos ( time * 1/4),
+                        );
+  }
+}
+
+class Moon extends Entity{
+  constructor(parent, c=0x3333AA, s=true) {
+        super()
+
+        this.light = new THREE.DirectionalLight( c, 1 );
+        // this.light.position.set( x, y, z );
+
+        this.light.castShadow = true;            // default false
+
+        this.light.shadow.mapSize.width = 256;
+        this.light.shadow.mapSize.height = 256;
+
+        this.light.shadow.camera.near = 400;    // default
+        this.light.shadow.camera.far = 600;     // default
+
+        this.light.shadow.camera.left     = -100;
+        this.light.shadow.camera.right    =  100;
+        this.light.shadow.camera.top      =  100;
+        this.light.shadow.camera.bottom   = -100;
+        this.light.shadowDarkness = 0.9;
+
+        // var directionalLightHelper = new THREE.DirectionalLightHelper( this.light, 5 );
+        // scene.add(directionalLightHelper)
+        // var shadowHelper = new THREE.CameraHelper( this.light.shadow.camera );
+        // scene.add( shadowHelper );
 
 		this.light.add( new THREE.Mesh( new THREE.SphereBufferGeometry( 40, 8, 8 ), new THREE.MeshBasicMaterial( { color: 0xffffff } ) ) );
 
@@ -273,27 +319,42 @@ class DirectionalLightEntity extends Entity{
   }
 
   update() {
-      // var time = Date.now() * 0.001;
-      // this.light.position.set(
-      //                       0,
-      //                       1000 * Math.sin ( time * 1/6),
-      //                       1000 * Math.cos ( time * 1/6),
-      //                   );
+      var time = Date.now() * 0.001;
+      this.light.position.set(
+                            0,
+                            -500 * Math.sin ( time * 1/4),
+                            -500 * Math.cos ( time * 1/4),
+                        );
   }
 }
+
 
 // ---------------------------------------------------------------------------
 
 var oceanBed = new OceanBed(scene);
 entities.push(oceanBed);
-entities.push(new Volcano(scene, oceanBed.geometry, 64, 500000, 1000));
-entities.push(new Volcano(scene, oceanBed.geometry, 64, 500000, 1000));
-entities.push(new Volcano(scene, oceanBed.geometry, 64, 500000, 1000));
-entities.push(new Volcano(scene, oceanBed.geometry, 64, 500000, 1000));
-entities.push(new Volcano(scene, oceanBed.geometry, 64, 500000, 1000));
 
-entities.push(new WaterSurface(scene));
-entities.push(new DirectionalLightEntity(scene, 1000, 1000, 0, 0xFFAA66, true));
+var m = 6;
+for (var c = 1; c < m; c++)
+{
+    entities.push(new Volcano(scene, oceanBed.geometry, 64, c*100000, (c*100000) / 100));
+}
+
+
+
+var surface = new WaterSurface(scene);
+entities.push(surface);
+
+var sun = new Sun(scene);
+entities.push(sun);
+
+var moon = new Moon(scene);
+entities.push(moon);
+
+// var gui = new dat.GUI();
+// this.gui.add(surface, 'waves');
+// this.gui.add(surface, 'speed');
+// this.gui.add(oceanBed, 'voffset');
 
 // ---------------------------------------------------------------------------
 
