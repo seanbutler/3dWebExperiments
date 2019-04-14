@@ -30,7 +30,7 @@ Inspired from https://generativeartistry.com/
 - [Square](Square)
 - [C=64 Maze](C64)
 - [Bubbles](Packing)
-
+- [Gradients](Gradients)
 
 ## Games Etc
 
