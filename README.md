@@ -32,11 +32,13 @@ Inspired from https://generativeartistry.com/
 - [Bubbles](Packing)
 
 
-## Games
+## Games Etc
 
-Canvas Only, no dependancies, for teaching/learning.
+Canvas Only, no dependencies, mostly for teaching/learning.
 
-- [Pong](Games/Pong)
+- [Bouncer](Games/Bouncer)
+- [Stars](Games/Stars)
+- [Breakout](Games/Breakout)
 
 ## Stupidity
 

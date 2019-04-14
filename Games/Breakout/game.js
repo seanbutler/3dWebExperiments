@@ -16,23 +16,47 @@ context.scale(dpr, dpr);
 
 var entities = [];
 
-while(entities.length < 100 ) {
+for ( var n = 0; n < 100; n++)
+{
     entities.push(new Star());
 }
 
-entities.push(new Bat());
-entities.push(new Ball());
+var rainbow = [
+    "rgb(255, 0, 0)",
+    "rgb(255, 128, 0)",
+    "rgb(255, 255, 0)",
+    "rgb(0, 255, 0)",
+    "rgb(0, 0, 255)",
+    "rgb(128, 0, 255)",
+    "rgb(255, 0, 255)"
+];
+
+for ( var y = 0; y < rainbow.length; y++)
+{
+    for ( var x = 0; x < 10; x++)
+    {
+        entities.push(new Block(x, y, rainbow[y]));
+    }
+}
+
+var bat = new Bat();
+var ball = new Ball();
+
+entities.push(bat);
+entities.push(ball);
 
 var animate = function () {
 
-    context.fillStyle = "rgba(0, 0, 0, 0.05)";
+    context.fillStyle = "rgba(0, 0, 0, 0.1)";
     context.fillRect(0, 0, width, height);
 
     requestAnimationFrame(animate);
 
     entities.forEach(function(element) {
-        element.update();
-        element.draw();
+        if (element.exists) {
+            element.update();
+            element.draw();
+        }
     });
 
 };
