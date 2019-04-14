@@ -32,6 +32,12 @@ Inspired from https://generativeartistry.com/
 - [Bubbles](Packing)
 
 
+## Games
+
+Canvas Only, no dependancies, for teaching/learning.
+
+- [Pong](Games/Pong)
+
 ## Stupidity
 
  - [Alert Joke](Alert)
