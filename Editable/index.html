@@ -1,0 +1,115 @@
+<html>
+
+<body>
+    <canvas>
+    </canvas>
+
+<div id = "mydiv"
+    style="position: absolute;
+                left: 32px;
+                top: 32px;
+                border: 1px dashed green;
+                padding: 8px;
+                color: green;
+                font-size: 24px;
+                background: transparent">
+
+
+
+
+<!-- <div id="mydivheader"
+    style="color: green;
+    padding: 8px;
+    color: green;
+            font-size: 12px;
+            /* border: 1px dashed green; */
+          background: transparent">
+    DRG
+</div> -->
+
+    <form name="game">
+        <textarea style="color: green;
+                font-size: 18px;
+                border: 1px dashed green;
+                background: transparent"
+            id="code"
+            rows="12"
+            cols="40">
+
+        </textarea>
+<br/>
+        <input style="color: green;
+                padding: 8px;
+                font-size: 12px;
+                border: 1px dashed red;
+                background: transparent"
+            type = "button"
+            value = "DO"
+            onclick = "executeJS()" />
+
+            <input style="color: green;
+                    padding: 8px;
+                    font-size: 12px;
+                    border: 1px dashed green;
+                    background: transparent"
+                type = "button"
+                value = "CLR"
+                onclick = "clearJS()" />
+
+                <input id="mydivheader"
+                        style="color: green;
+                        padding: 8px;
+                        font-size: 12px;
+                        cursor: move;
+                        border: 1px dashed green;
+                        background: transparent"
+                    type = "button"
+                    value = "DRG" />
+
+                    <input id="mydivheader"
+                            style="color: green;
+                            padding: 8px;
+                            font-size: 12px;
+                            cursor: move;
+                            border: 1px dashed green;
+                            background: transparent"
+                        type = "button"
+                        value = "SML" />
+
+                        <input id="mydivheader"
+                                style="color: green;
+                                padding: 8px;
+                                font-size: 12px;
+                                cursor: move;
+                                border: 1px dashed green;
+                                background: transparent"
+                            type = "button"
+                            value = "LRG" />
+
+    </form>
+
+</div>
+</body>
+
+<script type="text/javascript">
+
+
+    function executeJS(){
+      var element = document.getElementById("code");
+      var code = element.value;
+      // console.log(code);
+      eval(code);
+    }
+
+    function clearJS(){
+      var element = document.getElementById("code");
+      element.value = "";
+    }
+
+
+</script>
+
+<script src="utils/draggable.js"></script>
+<script src="game.js"></script>
+
+</html>
