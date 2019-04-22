@@ -1,0 +1,62 @@
+html {
+    margin: 0;
+    border: 0;
+    padding: 0;
+
+    font-family: mono;
+    font-size: 1em;
+    background: black;
+}
+
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+div {
+    border-radius: 1em;
+    border: 1px solid white;
+    padding: 1em;
+    font-size: 1em;
+    background: rgba(64, 64, 64, 0.5);
+}
+
+
+.btn {
+    text-decoration: underline;
+    padding: 0.25em 2em 0.25em 2em;
+    color: white;
+    border: 1px solid transparent;
+    background: rgba(64, 64, 64, 0.5);
+}
+
+.btn:hover {
+    background: rgba(255, 64, 64, 0.5);
+}
+
+#mydiv {
+    position: absolute;
+    left: 32px;
+    top: 32px;
+    border: 1px solid white;
+    padding: 8px;
+    font-size: 24px;
+    background: transparent
+}
+
+#mydiv:hover {
+    background: rgba(64, 64, 64, 0.5);
+}
+
+.code {
+    background: rgba(64, 64, 64, 0.5);
+    border-radius: 16px;
+    border: 1px solid white;
+    padding: 16px;
+    font-size: 24px;
+}
+
+.code:hover {
+    color: white;
+}

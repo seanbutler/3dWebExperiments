@@ -1,91 +1,53 @@
+<!DOCTYPE html>
 <html>
+    <head>
+		<title>SB</title>
+        <link rel="stylesheet" type="text/css" href="editable.css">
+	</head>
 
 <body>
     <canvas>
     </canvas>
 
-<div id = "mydiv"
-    style="position: absolute;
-                left: 32px;
-                top: 32px;
-                border: 1px dashed green;
-                padding: 8px;
-                color: green;
-                font-size: 24px;
-                background: transparent">
-
-
-
-
-<!-- <div id="mydivheader"
-    style="color: green;
-    padding: 8px;
-    color: green;
-            font-size: 12px;
-            /* border: 1px dashed green; */
-          background: transparent">
-    DRG
-</div> -->
+<div id = "mydiv">
 
     <form name="game">
-        <textarea style="color: green;
-                font-size: 18px;
-                border: 1px dashed green;
-                background: transparent"
+        <textarea
+        class = "code"
             id="code"
             rows="12"
             cols="40">
+// entites = []
 
+for(var n=0;n<100;n++) {
+  entities.push(new Star())
+}
+
+for(var n=0;n<10;n++) {
+  entities.push(new Boing())
+}
+
+//for(var n=0;n<3;n++) {
+//  entities.push(new Pulse())
+//}
         </textarea>
-<br/>
-        <input style="color: green;
-                padding: 8px;
-                font-size: 12px;
-                border: 1px dashed red;
-                background: transparent"
+
+        <br/>
+
+        <input class = "btn"
             type = "button"
             value = "DO"
             onclick = "executeJS()" />
 
-            <input style="color: green;
-                    padding: 8px;
-                    font-size: 12px;
-                    border: 1px dashed green;
-                    background: transparent"
-                type = "button"
-                value = "CLR"
-                onclick = "clearJS()" />
+        <input class = "btn"
+            type = "button"
+            value = "CLR"
+            onclick = "clearJS()" />
 
-                <input id="mydivheader"
-                        style="color: green;
-                        padding: 8px;
-                        font-size: 12px;
-                        cursor: move;
-                        border: 1px dashed green;
-                        background: transparent"
-                    type = "button"
-                    value = "DRG" />
-
-                    <input id="mydivheader"
-                            style="color: green;
-                            padding: 8px;
-                            font-size: 12px;
-                            cursor: move;
-                            border: 1px dashed green;
-                            background: transparent"
-                        type = "button"
-                        value = "SML" />
-
-                        <input id="mydivheader"
-                                style="color: green;
-                                padding: 8px;
-                                font-size: 12px;
-                                cursor: move;
-                                border: 1px dashed green;
-                                background: transparent"
-                            type = "button"
-                            value = "LRG" />
-
+        <input class = "btn"
+            id="mydivheader"
+            type = "button"
+            value = "DRG" />
     </form>
 
 </div>
@@ -110,6 +72,7 @@
 </script>
 
 <script src="utils/draggable.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
 <script src="game.js"></script>
 
 </html>
