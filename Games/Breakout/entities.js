@@ -70,36 +70,30 @@ function Block(x, y, colour) {
 
     this.w = width / 10.0;
     this.h = height / 20.0;
-
     this.x = x * this.w;
     this.y = y * this.h;
 
-    // console.log("Block(" + this.x + " " + this.y + ")\n");
+    this.isa = "Block";
+    this.isCollidable = true;
 
-    // this.color = "rgb(" + Math.random()*255 + ", " + Math.random()*255 + ", " + Math.random()*255 + ")";
     this.color = colour;
 
     this.update = function () {
-        if ( this.x + this.w > ball.x - (ball.size/2) ) {
-            if ( this.x < ball.x + (ball.size/2) ) {
-                if ( this.y + this.h > ball.y - (ball.size/2) ) {
-                    if ( this.y < ball.y + (ball.size/2) ) {
-                        this.exists = false;
-                    }
-                }
-            }
-        }
     }
 
     this.draw = function () {
         context.beginPath();
         context.fillStyle = this.color;
-        context.rect(this.x, this.y, this.w, this.h);
+        context.rect(this.x-this.w, this.y-this.h, this.w, this.h);
         context.fill();
     }
 
-}
+    this.Collided = function(other) {
+        console.log(Date.now() + " " + this.isa + " Collided");
+        this.exists = false;
+    }
 
+}
 
 // ---------------------------------------------------------------------------
 
@@ -110,11 +104,16 @@ function Ball() {
 
         this.x = width / 2;
         this.y = height / 2;
+        this.w = width/48;
+        this.h = height/48;
+
         this.speed = 20.0;
         this.dx = (this.speed * Math.random()) - ( this.speed * 0.5 );
         this.dy = (this.speed * Math.random()) - ( this.speed * 0.5 );
         this.color = "white";
         this.size = width/48;
+        this.isa = "Ball";
+        this.isCollidable = true;
     }
 
     this.update = function () {
@@ -135,8 +134,12 @@ function Ball() {
     this.draw = function () {
         context.beginPath();
         context.fillStyle = this.color;
-        context.rect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
+        context.rect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);
         context.fill();
+    }
+
+    this.Collided = function(other) {
+        console.log(Date.now() + " " + this.isa + " Collided");
     }
 
     this.init();
@@ -144,19 +147,22 @@ function Ball() {
 
 // ---------------------------------------------------------------------------
 
-
 function Bat() {
 
     this.init = function() {
         this.exists = true;
         this.x = width / 2;
         this.y = height * 0.9;
+        this.w = width * 0.2;
+        this.h = height * 0.03;
+
         this.speed = 20.0;
         this.dx = 0;
         this.dy = 0;
+
         this.color = "green";
-        this.width = 128;
-        this.height = 32;
+        this.isa = "Bat";
+        this.isCollidable = true;
     }
 
     this.update = function () {
@@ -173,8 +179,13 @@ function Bat() {
     this.draw = function () {
         context.beginPath();
         context.fillStyle = this.color;
-        context.rect(this.x-this.width/2, this.y, this.width, this.height);
+        context.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
         context.fill();
+    }
+
+    this.Collided = function(other) {
+        console.log(Date.now() + " " + this.isa + "Collided");
+        // this.color = "red"
     }
 
     this.init();

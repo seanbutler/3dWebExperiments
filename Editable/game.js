@@ -19,7 +19,7 @@ function Pulse() {
     this.init = function() {
         this.x = Math.random()*width;
         this.y = Math.random()*height;
-        this.color = "rgb(" + Math.random()*128 + ", " + Math.random()*128 + ", " + Math.random()*128 + ")";
+        this.color = "rgb(" + 128+Math.random()*128 + ", " + Math.random()*128 + ", " + Math.random()*128 + ")";
         this.size = width/4 +  Math.random()*width/4;
     }
 

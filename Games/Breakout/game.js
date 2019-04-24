@@ -14,9 +14,29 @@ context.scale(dpr, dpr);
 
 // ---------------------------------------------------------------------------
 
+function IntersectionTestAABB(element, other) {
+
+    // console.log(element.isa + " " + element.x + " " + element.y);
+    // console.log(other.isa + " " + other.x + " " + other.y);
+    // console.log(1);
+
+    if ( element.x - (element.w / 2) < other.x + (other.w / 2)) {
+        if ( element.x + (element.w / 2) > other.x - (other.w / 2)) {
+            if ( element.y - (element.h / 2) < other.y + (other.h / 2)) {
+                if ( element.y + (element.h / 2) > other.y - (other.h / 2)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false
+}
+
+// ---------------------------------------------------------------------------
+
 var entities = [];
 
-for ( var n = 0; n < 100; n++)
+for ( var n = 0; n < 50; n++)
 {
     entities.push(new Star());
 }
@@ -47,7 +67,7 @@ entities.push(ball);
 
 var animate = function () {
 
-    context.fillStyle = "rgba(0, 0, 0, 0.1)";
+    context.fillStyle = "rgba(0, 0, 0, 0.125)";
     context.fillRect(0, 0, width, height);
 
     requestAnimationFrame(animate);
@@ -56,9 +76,22 @@ var animate = function () {
         if (element.exists) {
             element.update();
             element.draw();
+
+            if (element.isCollidable) {
+                entities.forEach(function(other) {
+                    if (other.isCollidable) {
+                        if ( element.isa != other.isa ) {
+                            if (IntersectionTestAABB(element, other)) {
+                                element.Collided(other);
+                                other.Collided(element);
+                                // console.log(element.isa + " " + other.isa);
+                            }
+                        }
+                    }
+                });
+            }
         }
     });
-
 };
 
 // ---------------------------------------------------------------------------
