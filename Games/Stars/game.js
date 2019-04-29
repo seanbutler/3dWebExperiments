@@ -23,7 +23,7 @@ for ( var n = 0; n < 100; n++)
 
 var animate = function () {
 
-    context.fillStyle = "rgba(0, 0, 0, 0.1)";
+    context.fillStyle = "rgba(0, 0, 0, 0.05)";
     context.fillRect(0, 0, width, height);
 
     requestAnimationFrame(animate);

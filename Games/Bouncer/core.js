@@ -14,21 +14,16 @@ context.scale(dpr, dpr);
 
 // ---------------------------------------------------------------------------
 
-
 var ball = new Ball();
 
 // ---------------------------------------------------------------------------
 
 var animate = function () {
-
-    context.fillStyle = "rgba(0, 0, 0, 0.1)";
+    context.fillStyle = "rgb(255, 255, 255)";
     context.fillRect(0, 0, width, height);
-
     requestAnimationFrame(animate);
-
     ball.update();
     ball.draw();
-
 };
 
 // ---------------------------------------------------------------------------

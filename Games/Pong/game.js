@@ -38,24 +38,6 @@ var entities = [];
 
 
 
-var rainbow = [
-    "rgb(255, 0, 0)",
-    "rgb(255, 128, 0)",
-    "rgb(255, 255, 0)",
-    "rgb(0, 255, 0)",
-    "rgb(0, 0, 255)",
-    "rgb(128, 0, 255)",
-    "rgb(255, 0, 255)"
-];
-
-for ( var y = 0; y < rainbow.length; y++)
-{
-    for ( var x = 0; x < 10; x++)
-    {
-        entities.push(new Block(x, y, rainbow[y]));
-    }
-}
-
 var bat = new Bat();
 var ball = new Ball();
 

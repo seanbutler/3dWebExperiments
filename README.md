@@ -37,8 +37,10 @@ Inspired from https://generativeartistry.com/
 Canvas Only, no dependencies, mostly for teaching/learning.
 
 - [Bouncer](Games/Bouncer)
-- [Stars](Games/Stars)
 - [Breakout](Games/Breakout)
+- [Player](Games/Player)
+- [Pong](Games/Pong)
+- [Stars](Games/Stars)
 
 ## Stupidity
 

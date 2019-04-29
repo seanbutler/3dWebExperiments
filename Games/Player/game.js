@@ -14,53 +14,20 @@ context.scale(dpr, dpr);
 
 // ---------------------------------------------------------------------------
 
-function IntersectionTestAABB(element, other) {
-
-    // console.log(element.isa + " " + element.x + " " + element.y);
-    // console.log(other.isa + " " + other.x + " " + other.y);
-    // console.log(1);
-
-    if ( element.x - (element.w / 2) < other.x + (other.w / 2)) {
-        if ( element.x + (element.w / 2) > other.x - (other.w / 2)) {
-            if ( element.y - (element.h / 2) < other.y + (other.h / 2)) {
-                if ( element.y + (element.h / 2) > other.y - (other.h / 2)) {
-                    return true;
-                }
-            }
-        }
-    }
-    return false
-}
-
-// ---------------------------------------------------------------------------
-
 var entities = [];
 
-
-
-var rainbow = [
-    "rgb(255, 0, 0)",
-    "rgb(255, 128, 0)",
-    "rgb(255, 255, 0)",
-    "rgb(0, 255, 0)",
-    "rgb(0, 0, 255)",
-    "rgb(128, 0, 255)",
-    "rgb(255, 0, 255)"
-];
-
-for ( var y = 0; y < rainbow.length; y++)
-{
-    for ( var x = 0; x < 10; x++)
-    {
-        entities.push(new Block(x, y, rainbow[y]));
-    }
-}
-
 var bat = new Bat();
-var ball = new Ball();
 
 entities.push(bat);
-entities.push(ball);
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
+entities.push(new Ball());
 
 var animate = function () {
 
