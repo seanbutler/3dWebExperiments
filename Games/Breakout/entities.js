@@ -3,13 +3,11 @@
 documentKeyDown = function(event) {
     var keyCode = event.keyCode;
     keyboardService.keys[keyCode]=true;
-    // console.log("Down")
 };
 
 documentKeyUp = function(event) {
     var keyCode = event.keyCode;
     keyboardService.keys[keyCode]=false;
-    // console.log("Up")
 };
 
 function KeyboardService() {
@@ -67,32 +65,32 @@ function Star() {
 
 function Block(x, y, colour) {
     this.exists = true;
-
     this.w = width / 10.0;
     this.h = height / 20.0;
     this.x = x * this.w;
     this.y = y * this.h;
-
+    this.dx = 0;
+    this.dy = 0;
     this.isa = "Block";
     this.isCollidable = true;
 
     this.color = colour;
 
     this.update = function () {
+
     }
 
     this.draw = function () {
         context.beginPath();
         context.fillStyle = this.color;
-        context.rect(this.x-this.w, this.y-this.h, this.w, this.h);
+        context.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
         context.fill();
     }
 
     this.Collided = function(other) {
-        console.log(Date.now() + " " + this.isa + " Collided");
+        // console.log(Date.now() + " " + this.isa + " Collided");
         this.exists = false;
     }
-
 }
 
 // ---------------------------------------------------------------------------
@@ -139,7 +137,19 @@ function Ball() {
     }
 
     this.Collided = function(other) {
-        console.log(Date.now() + " " + this.isa + " Collided");
+        if (other.exists) {
+          console.log(Date.now() + " " + this.isa + " Collided");
+          console.log( GetHorizontalRelation(this, other) );
+          console.log( GetVerticalRelation(this, other) );
+
+          if ( GetHorizontalRelation(this, other) == 0) {
+            this.dy *= -1;
+          }
+
+          if ( GetVerticalRelation(this, other) == 0) {
+            this.dx *= -1;
+          }
+      }
     }
 
     this.init();
@@ -154,7 +164,7 @@ function Bat() {
         this.x = width / 2;
         this.y = height * 0.9;
         this.w = width * 0.2;
-        this.h = height * 0.03;
+        this.h = height * 0.05;
 
         this.speed = 20.0;
         this.dx = 0;
@@ -181,11 +191,13 @@ function Bat() {
         context.fillStyle = this.color;
         context.rect(this.x-this.w/2, this.y-this.h/2, this.w, this.h);
         context.fill();
+        this.color = "green"
+
     }
 
     this.Collided = function(other) {
-        console.log(Date.now() + " " + this.isa + "Collided");
-        // this.color = "red"
+        console.log(Date.now() + " " + this.isa + " Collided");
+        this.color = "red"
     }
 
     this.init();
