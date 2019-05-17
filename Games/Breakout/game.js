@@ -59,6 +59,13 @@ function GetVerticalRelation(element, other) {
 
 var entities = [];
 
+
+for ( var x = 0; x < 50; x++)
+{
+    entities.push(new Star());
+}
+
+
 var rainbow = [
     "rgb(255, 0, 0)",
     "rgb(255, 128, 0)",

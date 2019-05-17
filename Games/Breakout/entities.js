@@ -42,6 +42,10 @@ function Star() {
     }
 
     this.update = function () {
+
+        this.dy = -ball.dy;
+        this.dx = bat.dx;
+
         this.x += this.dx;
         this.y += this.dy;
 
