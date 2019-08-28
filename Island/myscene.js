@@ -2,7 +2,7 @@
 
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-camera.position.set(0, 15, 125);
+camera.position.set(80, 30, 80);
 var controls = new THREE.OrbitControls( camera );
 controls.update();
 // ---------------------------------------------------------------------------
@@ -17,13 +17,12 @@ renderer.setClearColor( 0xAAAAFF);
 
 // ---------------------------------------------------------------------------
 
-
 var entities = []
 
 class Entity extends THREE.Object3D{
 
   constructor() {
-      super();
+    super();
   }
 
   update() {
@@ -75,16 +74,16 @@ class WaterSurface extends Entity{
 
         if ( this.waves ) {
 
-
             var positions = this.geometry.attributes.position;
             var vertex = new THREE.Vector3();
 
             for ( var x = 0; x < this.size+1; x++ ) {
+
                 for ( var y = 0; y < this.size+1; y++ ) {
 
                     var pos = ( x * (this.size+1) ) + y;
 
-                	vertex.fromBufferAttribute( positions, pos );
+              	   vertex.fromBufferAttribute( positions, pos );
                     var time = Date.now() * this.speed;
                     vertex.y = 0;
 
