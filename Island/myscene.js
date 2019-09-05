@@ -12,7 +12,7 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.setClearColor( 0xAAAAFF);
+renderer.setClearColor( 0x77AAFF);
 
 
 // ---------------------------------------------------------------------------
@@ -37,11 +37,11 @@ class Entity extends THREE.Object3D{
 class WaterSurface extends Entity{
     constructor(parent) {
         super();
-        this.size = 200;
+        this.size = 128;
         this.waves = true;
 
 		var color = new THREE.Color();
-        this.geometry = new THREE.PlaneBufferGeometry( 200, 200, this.size, this.size );
+        this.geometry = new THREE.PlaneBufferGeometry( this.size, this.size, this.size, this.size );
         this.geometry.rotateX( - Math.PI / 2 );
 
         var positions = this.geometry.attributes.position;
@@ -103,6 +103,25 @@ class WaterSurface extends Entity{
         }
     }
 }
+
+// ---------------------------------------------------------------------------
+
+// const heights = [0,
+//                 10,
+//                 20,
+//                 30,
+//                 40,
+//                 50,
+//                 60]
+//
+// const colors = [rgb(255, 222, 173),   // sandy - underwater
+//                 rgb(255, 236, 139),   // light goldenrod
+//                 rgb(34, 139, 34),      // forest green
+//                 rgb(142, 142, 56),    // olive drab
+//                 rgb(128, 128, 128),   // grey
+//                 rgb(255, 250, 250)   // snow
+//                 ]
+
 // ---------------------------------------------------------------------------
 
 class Volcano extends Entity {
@@ -124,7 +143,6 @@ class Volcano extends Entity {
         parent.add(this);
     }
 
-
     generate(centre) {
 
         var positions = this.geometry.attributes.position;
@@ -140,7 +158,6 @@ class Volcano extends Entity {
                 this.n++;
 
                 var angle = (( Math.random() *  Math.PI/2) + ( Math.random() *  Math.PI/2)) /3;
-
                 var direction = Math.random() * ( 2 * Math.PI);
                 var velocity = minvel + (Math.random() * 2);
 
@@ -181,9 +198,9 @@ class Volcano extends Entity {
 }
 
 class OceanBed extends Entity {
-    constructor(parent) {
+    constructor(parent, size) {
         super();
-        this.size = 64;
+        this.size = size;
 
         this.voffset = -5;
 
@@ -192,12 +209,17 @@ class OceanBed extends Entity {
         this.position.z = 0;
 
         var color = new THREE.Color();
-        this.geometry = new THREE.PlaneBufferGeometry( 200, 200, this.size, this.size );
+        this.geometry = new THREE.PlaneBufferGeometry( this.size, this.size, this.size, this.size );
         this.geometry.rotateX( - Math.PI / 2 );
 
+        // this.material = new THREE.MeshBasicMaterial( {
+        //                               color: 0xf0f0f0,
+        //                               shading: THREE.FlatShading,
+        //                               vertexColors: THREE.VertexColors,
+
         this.material=new THREE.MeshPhongMaterial( {
-                                        color: 0x777777,
-                                        specular: 0x333333,
+                                        color: 0x007700,
+                                        specular: 0x003300,
                                         shininess: 1,
                                         flatShading: true,
                                         transparent: false,
@@ -215,7 +237,6 @@ class OceanBed extends Entity {
     update() {
         super.update();
         this.position.y = this.voffset;
-
     }
 }
 
@@ -224,8 +245,8 @@ class OceanBed extends Entity {
 class AmbientLightEntity extends Entity{
   constructor(c) {
         super()
-        this.color = c;
-        this.light = new THREE.AmbientLight( this.color );
+        // this.color = c;
+        // this.light = new THREE.AmbientLight( this.color );
 
         // var lightHelper = new THREE.AmbientlLightHelper( this.light, 5 );
         // scene.add(lightHelper)
@@ -262,7 +283,7 @@ class Sun extends Entity{
         // var shadowHelper = new THREE.CameraHelper( this.light.shadow.camera );
         // scene.add( shadowHelper );
 
-		this.light.add( new THREE.Mesh(
+        this.light.add( new THREE.Mesh(
                             new THREE.SphereBufferGeometry( 40, 8, 8 ),
                             new THREE.MeshBasicMaterial( { color: 0xFFFF00 } )
                             )
@@ -330,16 +351,14 @@ class Moon extends Entity{
 
 // ---------------------------------------------------------------------------
 
-var oceanBed = new OceanBed(scene);
+var oceanBed = new OceanBed(scene, 128);
 entities.push(oceanBed);
 
-var m = 6;
+var m = 12;
 for (var c = 1; c < m; c++)
 {
-    entities.push(new Volcano(scene, oceanBed.geometry, 64, c*100000, (c*100000) / 100));
+    entities.push(new Volcano(scene, oceanBed.geometry, 128, c*100000, (c*100000) / 100));
 }
-
-
 
 var surface = new WaterSurface(scene);
 entities.push(surface);
