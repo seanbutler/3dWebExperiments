@@ -24,13 +24,18 @@ See http://www.seanbutler.net/3DWebTechCourse
 
 ## Canvas
 
-Inspired from https://generativeartistry.com/
+Inspired from https://generativeartistry.com
 
 - [Lines](Lines)
 - [Square](Square)
 - [C=64 Maze](C64)
 - [Bubbles](Bubbles)
+
+## Fun With Colours
+
 - [Gradients](Gradients)
+- [Random Colors](RandomColors)
+
 
 ## Games Etc
 
