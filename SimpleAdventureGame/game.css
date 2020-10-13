@@ -1,0 +1,38 @@
+
+body{
+  margin:40px auto;
+  max-width:650px;
+  line-height:2;
+  font-size:24px;
+  color:#CCC;
+  background-color:#111;
+  padding:0 10px;
+  font-family: monospace;
+}
+
+h1,h2,h3{line-height:1.2}
+
+button {
+  font-family: monospace;
+  font-size: 24px;
+  margin: 3px;
+  background-color:#111;
+  color:#BBB;
+  padding: 0.25em;
+  border: 1px solid #BBB;
+    border-radius: 0.5em;
+}
+
+button:hover {
+  background-color:#333;
+}
+
+#state {
+  margin-top: 24px;
+  border-top: 1px solid #BBB;
+  padding-top: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid #BBB;
+  padding-bottom: 24px;
+
+}

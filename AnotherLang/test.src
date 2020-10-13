@@ -1,0 +1,11 @@
+declare x = 11
+declare y = 17
+
+func do_some_work(a) {
+    b=1;
+    return a+b;
+}
+
+do_some_work(x);
+
+
