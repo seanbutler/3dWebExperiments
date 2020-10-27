@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/sean/Experiments/AnotherLang/cmake-build-debug"/>
+				<Option working_dir="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/sean/Experiments/AnotherLang/cmake-build-debug"/>
+				<Option working_dir="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/sean/Experiments/AnotherLang/cmake-build-debug"/>
+				<Option working_dir="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="AnotherLang">
-				<Option output="/home/sean/Experiments/AnotherLang/cmake-build-debug/AnotherLang" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sean/Experiments/AnotherLang/cmake-build-debug"/>
+				<Option output="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/AnotherLang" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -53,15 +53,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 AnotherLang"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 AnotherLang"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="AnotherLang/fast">
-				<Option output="/home/sean/Experiments/AnotherLang/cmake-build-debug/AnotherLang" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/sean/Experiments/AnotherLang/cmake-build-debug"/>
+				<Option output="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/AnotherLang" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sean/Work/Sketches/AnotherLang/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -75,35 +75,35 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 AnotherLang/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Experiments/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 AnotherLang/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/sean/Experiments/AnotherLang/main.cpp">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/main.cpp">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Parser.cpp">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Parser.cpp">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Parser.h">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Parser.h">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Tokenizer.cpp">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Tokenizer.cpp">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Tokenizer.h">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Tokenizer.h">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Tokens.cpp">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Tokens.cpp">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/src/Tokens.h">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/src/Tokens.h">
 			<Option target="AnotherLang"/>
 		</Unit>
-		<Unit filename="/home/sean/Experiments/AnotherLang/CMakeLists.txt">
+		<Unit filename="/home/sean/Work/Sketches/AnotherLang/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

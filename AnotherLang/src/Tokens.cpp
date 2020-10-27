@@ -6,7 +6,7 @@
 
 Token tokens[] = {
 
-        Token(KWD_DECL,     "declare"   ),
+        Token(KWD_DECL,     "decl"   ),
         Token(KWD_CONST,    "const"     ),
         Token(KWD_MUTABLE,  "mutable"   ),
 
@@ -18,6 +18,7 @@ Token tokens[] = {
         Token(KWD_PROC,     "proc"      ),
         Token(KWD_THREAD,   "thread"    ),
         Token(KWD_PROC,     "exit"      )
+
 };
 
 Token symbols[] = {
@@ -53,6 +54,5 @@ Token symbols[] = {
         Token(OP_NE,       "!="     ),
 
 //        Token(OP_MOD,        "%"     ),
-
 
 };

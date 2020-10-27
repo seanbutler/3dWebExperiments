@@ -6,23 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/sean/Experiments/AnotherLang/main.cpp
-iostream
--
-./src/Tokenizer.h
-/home/sean/Experiments/AnotherLang/src/Tokenizer.h
-./src/AST.h
-/home/sean/Experiments/AnotherLang/src/AST.h
-./src/Parser.h
-/home/sean/Experiments/AnotherLang/src/Parser.h
-string
--
-fstream
--
-streambuf
--
-
-/home/sean/Experiments/AnotherLang/src/AST.h
+/home/sean/Work/Sketches/AnotherLang/src/AST.h
 string
 -
 strstream
@@ -30,6 +14,8 @@ strstream
 vector
 -
 iostream
+-
+memory
 -
 boost/uuid/uuid.hpp
 -
@@ -40,29 +26,21 @@ boost/uuid/uuid_io.hpp
 boost/lexical_cast.hpp
 -
 
-/home/sean/Experiments/AnotherLang/src/Parser.cpp
+/home/sean/Work/Sketches/AnotherLang/src/Parser.cpp
 Parser.h
-/home/sean/Experiments/AnotherLang/src/Parser.h
+/home/sean/Work/Sketches/AnotherLang/src/Parser.h
 AST.h
-/home/sean/Experiments/AnotherLang/src/AST.h
+/home/sean/Work/Sketches/AnotherLang/src/AST.h
 
-/home/sean/Experiments/AnotherLang/src/Parser.h
+/home/sean/Work/Sketches/AnotherLang/src/Parser.h
 vector
 -
 memory
 -
 Tokens.h
-/home/sean/Experiments/AnotherLang/src/Tokens.h
+/home/sean/Work/Sketches/AnotherLang/src/Tokens.h
 
-/home/sean/Experiments/AnotherLang/src/Tokenizer.h
-./Tokens.h
-/home/sean/Experiments/AnotherLang/src/Tokens.h
-vector
--
-string
--
-
-/home/sean/Experiments/AnotherLang/src/Tokens.h
+/home/sean/Work/Sketches/AnotherLang/src/Tokens.h
 string
 -
 

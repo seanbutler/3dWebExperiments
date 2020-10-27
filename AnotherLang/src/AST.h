@@ -8,6 +8,7 @@
 
 #include <vector>
 #include <iostream>
+#include <memory>
 
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
@@ -19,54 +20,30 @@
 class ASTNode {
 
 public:
-    ASTNode(const std::string & V = "undefined")
-        : value(V)
+    ASTNode()
     {
+        value = "unnamed";
         tag = boost::uuids::random_generator()();
-        std::cout << tag << std::endl;
+
+        std::cout << tag << " --- " << value << std::endl;
     }
 
     virtual ~ASTNode(){}
 
-    const std::string &getValue()       { return value; }
+    std::string Diagram()
+    {
+        return (std::string) "node"
+            + boost::lexical_cast<std::string>(tag)
+            + " [ label = \""
+            + value
+            + ":\" ];\n";
+    }
 
-    std::vector<std::unique_ptr<ASTNode>>siblings;
-    std::vector<std::unique_ptr<ASTNode>>children;
-    const std::string value;
+    std::vector<std::shared_ptr<ASTNode>>siblings;
+    std::vector<std::shared_ptr<ASTNode>>children;
+    std::string value;
     boost::uuids::uuid tag;
 };
 
 
-// ----------------------------------------------------------------------
 
-class IdentifierAST : public ASTNode {
-
-public:
-    IdentifierAST()
-        : ASTNode("Identifier")
-    {
-    }
-
-    std::string Diagram()
-    {
-        return (std::string) "node" + boost::lexical_cast<std::string>(tag) + " [ label = \"identifier:\" ];\n";
-    }
-};
-
-// ----------------------------------------------------------------------
-
-class DeclarationAST : public ASTNode {
-
-public:
-    DeclarationAST()
-        : ASTNode("Declaration")
-    {
-    }
-
-    std::string Diagram()
-    {
-        return (std::string) "node" + boost::lexical_cast<std::string>(tag) + " [ label = \"declaration:\" ];\n";
-    }
-};
-
-// ----------------------------------------------------------------------

@@ -31,7 +31,6 @@ int main(int argc, char**argv) {
     Parser parser;
     parser.SetInput(tokens);
 
-    ASTNode tree("Compile Unit");
-//    parser.Parse(tree);
+    parser.Parse();
     return 0;
 }

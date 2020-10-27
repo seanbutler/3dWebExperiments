@@ -1,11 +1,5 @@
-declare x = 11
-declare y = 17
+decl x
+x = 11
 
-func do_some_work(a) {
-    b=1;
-    return a+b;
-}
-
-do_some_work(x);
-
-
+decl y
+y = 17

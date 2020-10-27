@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/sean/Experiments/AnotherLang/main.cpp" "/home/sean/Experiments/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/main.cpp.o"
-  "/home/sean/Experiments/AnotherLang/src/Parser.cpp" "/home/sean/Experiments/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Parser.cpp.o"
-  "/home/sean/Experiments/AnotherLang/src/Tokenizer.cpp" "/home/sean/Experiments/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Tokenizer.cpp.o"
-  "/home/sean/Experiments/AnotherLang/src/Tokens.cpp" "/home/sean/Experiments/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Tokens.cpp.o"
+  "/home/sean/Work/Sketches/AnotherLang/main.cpp" "/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/main.cpp.o"
+  "/home/sean/Work/Sketches/AnotherLang/src/Parser.cpp" "/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Parser.cpp.o"
+  "/home/sean/Work/Sketches/AnotherLang/src/Tokenizer.cpp" "/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Tokenizer.cpp.o"
+  "/home/sean/Work/Sketches/AnotherLang/src/Tokens.cpp" "/home/sean/Work/Sketches/AnotherLang/cmake-build-debug/CMakeFiles/AnotherLang.dir/src/Tokens.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

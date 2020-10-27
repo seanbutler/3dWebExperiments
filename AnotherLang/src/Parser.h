@@ -23,17 +23,23 @@ public:
         return currentToken = &(tokens[position++]);
     }
 
+    Token* GetCurrentToken() {
+        return currentToken = &(tokens[position]);
+    }
+
     Token LookAhead(int offset = 1) {
         return tokens[position + offset];
     }
 
-    void Parse(ASTNode tree);
-    std::unique_ptr<ASTNode> ParseStatement();
+    void Parse();
+    std::shared_ptr<ASTNode> ParseStatement();
+    std::shared_ptr<ASTNode> ParseDeclaration();
+    std::shared_ptr<ASTNode> ParseAssignment();
 
 protected:
     Token* currentToken = nullptr;
     unsigned int position = 0;
     std::vector<Token> tokens;
-    std::unique_ptr<ASTNode> abstractSyntaxTree;
+    std::shared_ptr<ASTNode> abstractSyntaxTree;
 };
 

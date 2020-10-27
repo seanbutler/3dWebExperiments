@@ -15,9 +15,12 @@ enum TokenEnum : int {
     KWD_DECL,
     KWD_CONST,
     KWD_MUTABLE,
+
     KWD_IF,
     KWD_ELSE,
+
     KWD_WHILE,
+
     KWD_FUNC,
     KWD_PROC,
     KWD_THREAD,

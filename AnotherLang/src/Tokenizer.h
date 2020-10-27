@@ -37,4 +37,3 @@ private:
     std::vector<Token> outputTokens;
     std::string filename;
 };
-
