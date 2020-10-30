@@ -1,5 +1,7 @@
 decl x
-x = 11
-
 decl y
-y = 17
+
+x = 1
+y = 2
+
+

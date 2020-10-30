@@ -8,6 +8,7 @@
 void Parser::Parse() {
 
     abstractSyntaxTree = std::make_shared<ASTNode>();
+    abstractSyntaxTree->value = "Module";
 
     while (GetNextToken()->kind != TokenEnum::END_OF_FILE)
     {
@@ -46,6 +47,7 @@ void Parser::Parse() {
 
         }
     }
+    abstractSyntaxTree->Diagram();
 
 }
 
@@ -65,6 +67,7 @@ std::shared_ptr<ASTNode> Parser::ParseDeclaration() {
     }
 
     GetNextToken();
+
     if ( currentToken->kind == TokenEnum::IDENTIFIER) {
         std::cout << "ParseDeclaration() TokenEnum::IDENTIFIER" << std::endl;
         identifierNodeSP = std::make_shared<ASTNode>();

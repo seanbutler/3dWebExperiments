@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/sean/Work/Sketches/AnotherLang/main.cpp
+iostream
+-
+./src/Tokenizer.h
+/home/sean/Work/Sketches/AnotherLang/src/Tokenizer.h
+./src/AST.h
+/home/sean/Work/Sketches/AnotherLang/src/AST.h
+./src/Parser.h
+/home/sean/Work/Sketches/AnotherLang/src/Parser.h
+string
+-
+fstream
+-
+streambuf
+-
+
 /home/sean/Work/Sketches/AnotherLang/src/AST.h
 string
 -
@@ -39,6 +55,14 @@ memory
 -
 Tokens.h
 /home/sean/Work/Sketches/AnotherLang/src/Tokens.h
+
+/home/sean/Work/Sketches/AnotherLang/src/Tokenizer.h
+./Tokens.h
+/home/sean/Work/Sketches/AnotherLang/src/Tokens.h
+vector
+-
+string
+-
 
 /home/sean/Work/Sketches/AnotherLang/src/Tokens.h
 string

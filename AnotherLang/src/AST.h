@@ -30,17 +30,34 @@ public:
 
     virtual ~ASTNode(){}
 
-    std::string Diagram()
+    std::string Stringify()
     {
-        return (std::string) "node"
+        return (std::string) "node "
             + boost::lexical_cast<std::string>(tag)
             + " [ label = \""
             + value
-            + ":\" ];\n";
+            + "\" ];\n"
+            ;
+    }
+
+    void Diagram()
+    {
+        std::cout << Stringify();
+
+        for(auto N : children) {
+            N->Diagram();
+        }
+
+
+        for(auto N : siblings) {
+            N->Diagram();
+        }
+
     }
 
     std::vector<std::shared_ptr<ASTNode>>siblings;
     std::vector<std::shared_ptr<ASTNode>>children;
+
     std::string value;
     boost::uuids::uuid tag;
 };
