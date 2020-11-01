@@ -17,14 +17,16 @@
 
 // ----------------------------------------------------------------------
 
+static unsigned int gid = 0;
+
 class ASTNode {
 
 public:
     ASTNode()
     {
+        id = gid++;
         value = "unnamed";
         tag = boost::uuids::random_generator()();
-
         std::cout << tag << " --- " << value << std::endl;
     }
 
@@ -32,11 +34,10 @@ public:
 
     std::string Stringify()
     {
-        return (std::string) "node "
-            + boost::lexical_cast<std::string>(tag)
-            + " [ label = \""
-            + value
-            + "\" ];\n"
+        return (std::string) "node" + std::to_string(id) + " ["
+            + " uuid = \"" + boost::lexical_cast<std::string>(tag) + "\""
+            + " label = \"" + value + "\""
+            + " ];\n"
             ;
     }
 
@@ -48,13 +49,12 @@ public:
             N->Diagram();
         }
 
-
         for(auto N : siblings) {
             N->Diagram();
         }
-
     }
 
+    unsigned int id;
     std::vector<std::shared_ptr<ASTNode>>siblings;
     std::vector<std::shared_ptr<ASTNode>>children;
 
@@ -62,5 +62,5 @@ public:
     boost::uuids::uuid tag;
 };
 
-
+// ----------------------------------------------------------------------
 
