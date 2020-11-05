@@ -5,6 +5,11 @@
 #include "Parser.h"
 #include "AST.h"
 
+
+#include <iostream>
+
+
+
 void Parser::Parse() {
 
     abstractSyntaxTree = std::make_shared<ASTNode>();
@@ -17,37 +22,46 @@ void Parser::Parse() {
 
             case TokenEnum::KWD_DECL: {
                 std::cout << "Parser::Parse() TokenEnum::KWD_DECL" << std::endl;
-                abstractSyntaxTree->siblings.push_back(ParseDeclaration());
+                abstractSyntaxTree->children.push_back(ParseDeclaration());
                 break;
             }
 
             case TokenEnum::IDENTIFIER: {
                 std::cout << "Parser::Parse() TokenEnum::IDENTIFIER" << std::endl;
-                abstractSyntaxTree->siblings.push_back(ParseAssignment());
+                abstractSyntaxTree->children.push_back(ParseAssignment());
                 break;
             }
 
 //            case TokenEnum::KWD_FUNC: {
 //                std::cout << "Parser::Parse() TokenEnum::KWD_FUNC" << std::endl;
-//                abstractSyntaxTree->siblings.push_back(ParseFunction());
+//                abstractSyntaxTree->children.push_back(ParseFunction());
 //                break;
 //            }
 
 //            case TokenEnum::KWD_IF: {
 //                std::cout << "Parser::Parse() TokenEnum::KWD_FUNC" << std::endl;
-//                abstractSyntaxTree->siblings.push_back(ParseCondition());
+//                abstractSyntaxTree->children.push_back(ParseCondition());
 //                break;
 //            }
 
 //            case TokenEnum::KWD_WHILE: {
 //                std::cout << "Parser::Parse() TokenEnum::KWD_FUNC" << std::endl;
-//                abstractSyntaxTree->siblings.push_back(ParseWhile());
+//                abstractSyntaxTree->children.push_back(ParseWhile());
 //                break;
 //            }
 
         }
     }
-    abstractSyntaxTree->Diagram();
+
+
+    std::ofstream diagramFile("test.gv");
+
+    diagramFile << "digraph G {" << std::endl;
+    diagramFile << "node [shape = box];" << std::endl;
+    abstractSyntaxTree->Diagram(diagramFile);
+    diagramFile << "}" << std::endl;
+
+    diagramFile.close();
 
 }
 

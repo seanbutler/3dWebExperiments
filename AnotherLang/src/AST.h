@@ -3,12 +3,14 @@
 //
 
 #pragma once
-#include <string>
-#include <strstream>
 
 #include <vector>
-#include <iostream>
 #include <memory>
+
+#include <string>
+#include <strstream>
+#include <iostream>
+#include <fstream>
 
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
@@ -41,16 +43,17 @@ public:
             ;
     }
 
-    void Diagram()
+    void Diagram(std::ofstream & outStream)
     {
-        std::cout << Stringify();
+        outStream << "node" << std::to_string(id) << " ["
+                << " uuid = \"" << boost::lexical_cast<std::string>(tag) << "\""
+                << " label = \"" << value + "\""
+                << " ];"
+                << std::endl;
 
         for(auto N : children) {
-            N->Diagram();
-        }
-
-        for(auto N : siblings) {
-            N->Diagram();
+            N->Diagram(outStream);
+            outStream << "node" << this->id << " -> " << "node" << N->id << std::endl;
         }
     }
 

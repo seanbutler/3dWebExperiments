@@ -1,0 +1,23 @@
+digraph G {
+node0 [ uuid = "c4f56262-cf1e-4d9e-8f96-3a3fd1f30a4e" label = "Module" ];
+node1 [ uuid = "4c8b9b4b-c906-4ba0-8808-813df3a44db5" label = "Declaration" ];
+node2 [ uuid = "6d1483c5-14bb-4ced-bc47-5a30ab17a1e1" label = "Identifier" ];
+node1 -> node2
+node0 -> node1
+node3 [ uuid = "280229f3-db32-4a27-92a5-028feee03824" label = "Declaration" ];
+node4 [ uuid = "dda9b915-00fe-4d27-adc1-96a42bbceb75" label = "Identifier" ];
+node3 -> node4
+node0 -> node3
+node6 [ uuid = "c62e0a86-a0c2-482d-a84c-8b16f740da32" label = "Assignment" ];
+node5 [ uuid = "4a16cc39-2265-402d-80c8-64b78216cc17" label = "Identifier" ];
+node6 -> node5
+node7 [ uuid = "02e0b215-218c-494e-95e9-228271acd744" label = "Number" ];
+node6 -> node7
+node0 -> node6
+node9 [ uuid = "05744e6a-2355-4ffa-9317-8bae43916510" label = "Assignment" ];
+node8 [ uuid = "20e67348-1c9a-4299-8b92-905af25e132c" label = "Identifier" ];
+node9 -> node8
+node10 [ uuid = "a6ccb8ab-4847-40c4-a21f-13eb2d8af6a2" label = "Number" ];
+node9 -> node10
+node0 -> node9
+}
