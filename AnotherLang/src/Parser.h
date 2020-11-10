@@ -32,9 +32,12 @@ public:
     }
 
     void Parse();
-    std::shared_ptr<ASTNode> ParseStatement();
     std::shared_ptr<ASTNode> ParseDeclaration();
-    std::shared_ptr<ASTNode> ParseAssignment();
+    std::shared_ptr<ASTNode> ParseAssignment();         // identifier equals value
+    std::shared_ptr<ASTNode> ParseValue();              // identifier or constant
+    std::shared_ptr<ASTNode> ParseOperator();           // + - * / etc
+    std::shared_ptr<ASTNode> ParseExpression();         // A + B etc
+    std::shared_ptr<ASTNode> ParseParenExpression();    // (A + B ) etc
 
 protected:
     Token* currentToken = nullptr;

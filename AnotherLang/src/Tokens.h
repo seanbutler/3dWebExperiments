@@ -56,8 +56,8 @@ enum TokenEnum : int {
     NUMBER,
     IDENTIFIER,
 
-    END_OF_FILE = -1,
-    ERROR = -2
+    END_OF_FILE = 666,
+    ERROR = 667
 };
 
 // ----------------------------------------------------------------------

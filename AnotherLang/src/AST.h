@@ -45,16 +45,19 @@ public:
 
     void Diagram(std::ofstream & outStream)
     {
-        outStream << "node" << std::to_string(id) << " ["
-                << " uuid = \"" << boost::lexical_cast<std::string>(tag) << "\""
-                << " label = \"" << value + "\""
-                << " ];"
-                << std::endl;
+        if ( outStream ){
+            outStream << "node" << std::to_string(id) << " ["
+                      << " uuid = \"" << boost::lexical_cast<std::string>(tag) << "\""
+                      << " label = \"" << value + "\""
+                      << " ];"
+                      << std::endl;
 
-        for(auto N : children) {
-            N->Diagram(outStream);
-            outStream << "node" << this->id << " -> " << "node" << N->id << std::endl;
+            for(auto N : children) {
+                N->Diagram(outStream);
+                outStream << "node" << this->id << " -> " << "node" << N->id << std::endl;
+            }
         }
+
     }
 
     unsigned int id;
