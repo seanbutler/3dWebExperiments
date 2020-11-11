@@ -27,8 +27,8 @@ public:
     ASTNode()
     {
         id = gid++;
-        value = "unnamed";
         tag = boost::uuids::random_generator()();
+        value = "unnamed";
         std::cout << tag << " --- " << value << std::endl;
     }
 
@@ -45,7 +45,8 @@ public:
 
     void Diagram(std::ofstream & outStream)
     {
-        if ( outStream ){
+        if ( outStream )
+        {
             outStream << "node" << std::to_string(id) << " ["
                       << " uuid = \"" << boost::lexical_cast<std::string>(tag) << "\""
                       << " label = \"" << value + "\""
@@ -53,19 +54,19 @@ public:
                       << std::endl;
 
             for(auto N : children) {
-                N->Diagram(outStream);
-                outStream << "node" << this->id << " -> " << "node" << N->id << std::endl;
+                if (N != nullptr) {
+                    N->Diagram(outStream);
+                    outStream << "node" << this->id << " -> " << "node" << N->id << ";" << std::endl;
+                }
             }
         }
 
     }
 
     unsigned int id;
-    std::vector<std::shared_ptr<ASTNode>>siblings;
-    std::vector<std::shared_ptr<ASTNode>>children;
-
     std::string value;
     boost::uuids::uuid tag;
+    std::vector<std::shared_ptr<ASTNode>>children;
 };
 
 // ----------------------------------------------------------------------

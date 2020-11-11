@@ -11,6 +11,7 @@
 class ASTNode;
 
 class Parser {
+
 public:
     Parser() = default;
 
@@ -19,17 +20,18 @@ public:
         position = 0;
     }
 
-    Token* GetNextToken() {
+
+    Token* OldGetNextToken() {
         return currentToken = &(tokens[position++]);
     }
 
-    Token* GetCurrentToken() {
-        return currentToken = &(tokens[position]);
-    }
-
-    Token LookAhead(int offset = 1) {
-        return tokens[position + offset];
-    }
+//    Token* GetCurrentToken() {
+//        return currentToken = &(tokens[position]);
+//    }
+//
+//    Token LookAhead(int offset = 1) {
+//        return tokens[position + offset];
+//    }
 
     void Parse();
     std::shared_ptr<ASTNode> ParseDeclaration();
@@ -43,6 +45,7 @@ protected:
     Token* currentToken = nullptr;
     unsigned int position = 0;
     std::vector<Token> tokens;
+    std::vector<Token>::iterator tokenItor;
     std::shared_ptr<ASTNode> abstractSyntaxTree;
 };
 
