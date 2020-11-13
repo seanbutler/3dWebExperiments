@@ -1,6 +1,7 @@
 decl x
-x = 3
 decl y
 decl z
-y = 3
-z = 3
+
+x = 1
+y = 2 + 3
+z = 4 + 5 * 6

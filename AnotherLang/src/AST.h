@@ -28,7 +28,8 @@ public:
     {
         id = gid++;
         tag = boost::uuids::random_generator()();
-        value = "unnamed";
+        value = "novalue";
+        type = "notype";
         std::cout << tag << " --- " << value << std::endl;
     }
 
@@ -38,7 +39,8 @@ public:
     {
         return (std::string) "node" + std::to_string(id) + " ["
             + " uuid = \"" + boost::lexical_cast<std::string>(tag) + "\""
-            + " label = \"" + value + "\""
+//            + " label = \"" + value + "\""
+                + " label = \"" + type + " " + value + "\""
             + " ];\n"
             ;
     }
@@ -49,7 +51,7 @@ public:
         {
             outStream << "node" << std::to_string(id) << " ["
                       << " uuid = \"" << boost::lexical_cast<std::string>(tag) << "\""
-                      << " label = \"" << value + "\""
+                      << " label = \"" << type << " " << value + "\""
                       << " ];"
                       << std::endl;
 
@@ -60,10 +62,10 @@ public:
                 }
             }
         }
-
     }
 
     unsigned int id;
+    std::string type;
     std::string value;
     boost::uuids::uuid tag;
     std::vector<std::shared_ptr<ASTNode>>children;
