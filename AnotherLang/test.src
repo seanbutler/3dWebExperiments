@@ -1,7 +1,10 @@
 decl x
-decl y
-decl z
 
-x = 1
+decl y
 y = 2 + 3
-z = 4 + 5 * 6
+
+while(x+1){
+}
+
+decl z
+z = 4 * 5 + 6
