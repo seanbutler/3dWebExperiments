@@ -1,10 +1,17 @@
+
 decl x
+x = 0
 
 decl y
 y = 2 + 3
 
 while(x+1){
+    x = x + 1
 }
 
 decl z
 z = 4 * 5 + 6
+
+if(z){
+    x = x - 1
+}

@@ -19,7 +19,8 @@ public:
         tokens = T;
     }
 
-    void Parse();
+    void Parse(std::shared_ptr<ASTNode> & ast);
+    std::shared_ptr<ASTNode> ParseStatements();         // multiple statements in a row
     std::shared_ptr<ASTNode> ParseDeclaration();        // decl var
     std::shared_ptr<ASTNode> ParseAssignment();         // identifier equals value
     std::shared_ptr<ASTNode> ParseNumber();             // constant        3
@@ -28,6 +29,7 @@ public:
     std::shared_ptr<ASTNode> ParseExpression();         // A + B etc
 
     std::shared_ptr<ASTNode> ParseWhile();
+    std::shared_ptr<ASTNode> ParseIf();
     std::shared_ptr<ASTNode> ParseBlock();
 
 protected:

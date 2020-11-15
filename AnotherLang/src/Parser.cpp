@@ -7,13 +7,33 @@
 
 #include <iostream>
 
-void Parser::Parse() {
+void Parser::Parse(std::shared_ptr<ASTNode> & ast) {
 
-    abstractSyntaxTree = std::make_shared<ASTNode>();
-    abstractSyntaxTree->type = "Module";
-    abstractSyntaxTree->value = "";
+//    ast = std::make_shared<ASTNode>();
+//    ast->type = "Module";
+//    ast->value = "";
 
     tokenItor = tokens.begin();
+
+    ast = (ParseStatements());
+
+    std::ofstream diagramFile("test.gv");
+    diagramFile << "digraph G {" << std::endl;
+    diagramFile << "node [shape = box];" << std::endl;
+    ast->Diagram(diagramFile);
+    diagramFile << "}" << std::endl;
+    diagramFile.close();
+
+}
+
+// ----------------------------------------------------------------------
+
+std::shared_ptr<ASTNode> Parser::ParseStatements() {
+
+    std::shared_ptr<ASTNode> statementsNodeSP = nullptr;
+    statementsNodeSP = std::make_shared<ASTNode>();
+    statementsNodeSP->type = "Statements";
+    statementsNodeSP->value = "";
 
     while ( tokenItor->kind != TokenEnum::END_OF_FILE )
     {
@@ -22,41 +42,34 @@ void Parser::Parse() {
             // DECLARATION
             case TokenEnum::KWD_DECL: {
                 std::cout << "Parser::Parse() TokenEnum::KWD_DECL" << std::endl;
-                abstractSyntaxTree->children.push_back(ParseDeclaration());
+                statementsNodeSP->children.push_back(ParseDeclaration());
                 break;
             }
 
             // IDENTIFIER therefore ASSIGNMENT
             case TokenEnum::IDENTIFIER: {
                 std::cout << "Parser::Parse() TokenEnum::IDENTIFIER" << std::endl;
-                abstractSyntaxTree->children.push_back(ParseAssignment());
+                statementsNodeSP->children.push_back(ParseAssignment());
                 break;
             }
 
             // WHILE Statement
             case TokenEnum::KWD_WHILE:{
                 std::cout << "Parser::Parse() TokenEnum::KWD_WHILE" << std::endl;
-                abstractSyntaxTree->children.push_back(ParseWhile());
+                statementsNodeSP->children.push_back(ParseWhile());
+                break;
+            }
+
+            // IF Statement
+            case TokenEnum::KWD_IF:{
+                std::cout << "Parser::Parse() TokenEnum::KWD_IF" << std::endl;
+                statementsNodeSP->children.push_back(ParseIf());
                 break;
             }
         }
-
-        std::ofstream diagramFile("test.gv");
-        diagramFile << "digraph G {" << std::endl;
-        diagramFile << "node [shape = box];" << std::endl;
-        abstractSyntaxTree->Diagram(diagramFile);
-        diagramFile << "}" << std::endl;
-        diagramFile.close();
-
-
     }
 
-    std::ofstream diagramFile("test.gv");
-    diagramFile << "digraph G {" << std::endl;
-    diagramFile << "node [shape = box];" << std::endl;
-    abstractSyntaxTree->Diagram(diagramFile);
-    diagramFile << "}" << std::endl;
-    diagramFile.close();
+    return statementsNodeSP;
 
 }
 
@@ -134,6 +147,48 @@ std::shared_ptr<ASTNode> Parser::ParseAssignment() {
 
 }
 
+
+// ----------------------------------------------------------------------
+
+std::shared_ptr<ASTNode> Parser::ParseIf() {
+
+    std::shared_ptr<ASTNode> statementNodeSP = nullptr;
+    std::shared_ptr<ASTNode> conditionNodeSP = nullptr;
+    std::shared_ptr<ASTNode> blockNodeSP = nullptr;
+
+    if ( tokenItor->kind == TokenEnum::KWD_IF ) {
+        std::cout << "ParseAssignment() TokenEnum::KWD_IF" << std::endl;
+        statementNodeSP = std::make_shared<ASTNode>();
+        statementNodeSP->type = "Keyword";
+        statementNodeSP->value = "if";
+        tokenItor++;
+
+        if ( tokenItor->kind == TokenEnum::SYM_LPAREN) {
+            tokenItor++;
+            conditionNodeSP = ParseExpression();
+            statementNodeSP->children.push_back(conditionNodeSP);
+
+            if ( tokenItor->kind == TokenEnum::SYM_RPAREN) {
+                tokenItor++;
+
+                if ( tokenItor->kind == TokenEnum::SYM_LBRACES) {
+                    tokenItor++;
+
+                    blockNodeSP = ParseBlock();
+                    statementNodeSP->children.push_back(blockNodeSP);
+
+                    if (tokenItor->kind == TokenEnum::SYM_RBRACES) {
+                        tokenItor++;
+
+                        return statementNodeSP;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 // ----------------------------------------------------------------------
 
 std::shared_ptr<ASTNode> Parser::ParseWhile() {
@@ -176,18 +231,49 @@ std::shared_ptr<ASTNode> Parser::ParseWhile() {
 
 // ----------------------------------------------------------------------
 
-
 std::shared_ptr<ASTNode> Parser::ParseBlock() {
 
-    std::shared_ptr<ASTNode> statementNodeSP = nullptr;
-
     std::cout << "ParseBlock()" << std::endl;
-    statementNodeSP = std::make_shared<ASTNode>();
-    statementNodeSP->type = "Block";
-    statementNodeSP->value = "";
 
-    return statementNodeSP;
+    std::shared_ptr<ASTNode> statementsNodeSP = nullptr;
+
+    statementsNodeSP = std::make_shared<ASTNode>();
+    statementsNodeSP->type = "Block";
+    statementsNodeSP->value = "";
+
+    while ( tokenItor->kind != TokenEnum::SYM_RBRACES )
+    {
+        switch (tokenItor->kind) {
+
+            // DECLARATION
+            case TokenEnum::KWD_DECL: {
+                std::cout << "Parser::Parse() TokenEnum::KWD_DECL" << std::endl;
+                statementsNodeSP->children.push_back(ParseDeclaration());
+                break;
+            }
+
+                // IDENTIFIER therefore ASSIGNMENT
+            case TokenEnum::IDENTIFIER: {
+                std::cout << "Parser::Parse() TokenEnum::IDENTIFIER" << std::endl;
+                statementsNodeSP->children.push_back(ParseAssignment());
+                break;
+            }
+
+                // WHILE Statement
+            case TokenEnum::KWD_WHILE:{
+                std::cout << "Parser::Parse() TokenEnum::KWD_WHILE" << std::endl;
+                statementsNodeSP->children.push_back(ParseWhile());
+                break;
+            }
+        }
+    }
+
+    return statementsNodeSP;
+
 }
+
+
+
 
 // ----------------------------------------------------------------------
 

@@ -28,10 +28,16 @@ int main(int argc, char**argv) {
                 << std::endl;
     }
 
+
     Parser parser;
     parser.SetInput(tokens);
 
-    parser.Parse();
+    std::shared_ptr<ASTNode> ast;
+    ast = std::make_shared<ASTNode>();
+    ast->type = "Module";
+    ast->value = "";
+
+    parser.Parse(ast);
 
     return 0;
 }
