@@ -1,17 +1,16 @@
 
-decl x
-x = 0
-
-decl y
-y = 2 + 3
-
-while(x+1){
-    x = x + 1
+proc myproc {
+    decl z
+    z = 100
+    while (z) {
+        z = z - 1
+    }
 }
 
-decl z
-z = 4 * 5 + 6
+decl x
+x = 2 + 3
 
-if(z){
+while(x){
     x = x - 1
 }
+
