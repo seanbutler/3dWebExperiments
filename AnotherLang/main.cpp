@@ -28,7 +28,6 @@ int main(int argc, char**argv) {
                 << std::endl;
     }
 
-
     Parser parser;
     parser.SetInput(tokens);
 

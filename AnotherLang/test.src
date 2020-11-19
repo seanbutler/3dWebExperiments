@@ -1,16 +1,23 @@
+decl a, b, c
+a = 1
+b = 2
+c = a + b
 
-proc myproc {
-    decl z
-    z = 100
-    while (z) {
-        z = z - 1
+proc myproc
+{
+    decl x, y, z
+    z1 = 100
+    while (z1)
+    {
+        z1 = z1 - 1
     }
 }
 
-decl x
+decl x, y
 x = 2 + 3
 
-while(x){
+while(x)
+{
     x = x - 1
 }
 

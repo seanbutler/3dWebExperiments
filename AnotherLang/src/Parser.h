@@ -32,7 +32,7 @@ public:
     std::shared_ptr<ASTNode> ParseIf();
     std::shared_ptr<ASTNode> ParseBlock();
     std::shared_ptr<ASTNode> ParseProcedure();
-    std::shared_ptr<ASTNode> ParseFunc();
+    std::shared_ptr<ASTNode> ParseIdentList();
 
 protected:
     std::vector<Token> tokens;

@@ -74,9 +74,7 @@ std::shared_ptr<ASTNode> Parser::ParseStatements() {
 //                statementsNodeSP->children.push_back(ParseFunc());
 //                break;
 //            }
-
         }
-
     }
 
     return statementsNodeSP;
@@ -97,19 +95,7 @@ std::shared_ptr<ASTNode> Parser::ParseDeclaration() {
 
         tokenItor++;
 
-        if ( tokenItor->kind == TokenEnum::IDENTIFIER) {
-            std::cout << "ParseDeclaration() TokenEnum::IDENTIFIER" << std::endl;
-            identifierNodeSP = std::make_shared<ASTNode>();
-            identifierNodeSP->type = "Identifier";
-            identifierNodeSP->value = tokenItor->name;
-        }
-        else {
-            return nullptr;
-        }
-
-        tokenItor++;
-
-        declarationNodeSP->children.push_back(identifierNodeSP);
+        declarationNodeSP->children.push_back(ParseIdentList());
         return declarationNodeSP;
 
     }
@@ -121,40 +107,49 @@ std::shared_ptr<ASTNode> Parser::ParseDeclaration() {
 
 // ----------------------------------------------------------------------
 
-//std::shared_ptr<ASTNode> Parser::ParseDeclaration() {
-//    std::shared_ptr<ASTNode> declarationNodeSP = nullptr;
-//    std::shared_ptr<ASTNode> identifierNodeSP = nullptr;
-//
-//    if ( tokenItor->kind == TokenEnum::KWD_DECL) {
-//        std::cout << "ParseDeclaration() TokenEnum::KWD_DECL" << std::endl;
-//        declarationNodeSP = std::make_shared<ASTNode>();
-//        declarationNodeSP->type = "Keyword";
-//        declarationNodeSP->value = "decl";
-//
-//        tokenItor++;
-//
-//        if ( tokenItor->kind == TokenEnum::IDENTIFIER) {
-//            std::cout << "ParseDeclaration() TokenEnum::IDENTIFIER" << std::endl;
-//            identifierNodeSP = std::make_shared<ASTNode>();
-//            identifierNodeSP->type = "Identifier";
-//            identifierNodeSP->value = tokenItor->name;
-//        }
-//        else {
-//            return nullptr;
-//        }
-//
-//        tokenItor++;
-//
-//        declarationNodeSP->children.push_back(identifierNodeSP);
-//        return declarationNodeSP;
-//
-//    }
-//    else {
-//        return nullptr;
-//    }
-//
-//
-//}
+std::shared_ptr<ASTNode> Parser::ParseIdentList() {
+
+    std::shared_ptr<ASTNode> listNodeSP = nullptr;
+    std::shared_ptr<ASTNode> identifierNodeSP = nullptr;
+
+    if ( tokenItor->kind == TokenEnum::IDENTIFIER) {
+
+        listNodeSP = std::make_shared<ASTNode>();
+        listNodeSP->type = "Identifier List";
+        listNodeSP->value = "";
+
+        std::cout << "ParseIdentList() TokenEnum::IDENTIFIER" << std::endl;
+        identifierNodeSP = std::make_shared<ASTNode>();
+        identifierNodeSP->type = "Identifier";
+        identifierNodeSP->value = tokenItor->name;
+        listNodeSP->children.push_back(identifierNodeSP);
+
+        tokenItor++;
+
+        while ( tokenItor->kind == TokenEnum::SYM_COMMA ) {
+            std::cout << "ParseIdentList() TokenEnum::SYM_COMMA" << std::endl;
+
+            tokenItor++;
+
+            if (tokenItor->kind == TokenEnum::IDENTIFIER) {
+                std::cout << "ParseIdentList() TokenEnum::IDENTIFIER" << std::endl;
+                identifierNodeSP = std::make_shared<ASTNode>();
+                identifierNodeSP->type = "Identifier";
+                identifierNodeSP->value = tokenItor->name;
+                listNodeSP->children.push_back(identifierNodeSP);
+                tokenItor++;
+            }
+        }
+        return listNodeSP;
+    }
+    else {
+        return nullptr;
+    }
+
+}
+
+
+
 
 // ----------------------------------------------------------------------
 
@@ -417,15 +412,15 @@ std::shared_ptr<ASTNode> Parser::ParseNumber() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseIdentifier() {
-    std::shared_ptr<ASTNode> valueNodeSP = nullptr;
+    std::shared_ptr<ASTNode> nodeSP = nullptr;
 
     if ( tokenItor->kind == TokenEnum::IDENTIFIER) {
         std::cout << "ParseIdentifier() TokenEnum::IDENTIFIER" << std::endl;
-        valueNodeSP = std::make_shared<ASTNode>();
-        valueNodeSP->type = "Identifier";
-        valueNodeSP->value = tokenItor->name;
+        nodeSP = std::make_shared<ASTNode>();
+        nodeSP->type = "Identifier";
+        nodeSP->value = tokenItor->name;
     }
-    return valueNodeSP;
+    return nodeSP;
 }
 
 // ----------------------------------------------------------------------
@@ -434,6 +429,7 @@ std::shared_ptr<ASTNode> Parser::ParseProcedure() {
 
     std::shared_ptr<ASTNode> statementNodeSP = nullptr;
     std::shared_ptr<ASTNode> identifierNodeSP = nullptr;
+    std::shared_ptr<ASTNode> varsListNodeSP = nullptr;
     std::shared_ptr<ASTNode> blockNodeSP = nullptr;
 
     if ( tokenItor->kind == TokenEnum::KWD_PROC ) {
@@ -449,6 +445,7 @@ std::shared_ptr<ASTNode> Parser::ParseProcedure() {
             identifierNodeSP = std::make_shared<ASTNode>();
             identifierNodeSP->type = "Identifier";
             identifierNodeSP->value = tokenItor->name;
+            statementNodeSP->children.push_back(identifierNodeSP);
 
             tokenItor++;
 
@@ -466,8 +463,4 @@ std::shared_ptr<ASTNode> Parser::ParseProcedure() {
             }
         }
     }
-}
-
-std::shared_ptr<ASTNode> Parser::ParseFunc() {
-
 }
