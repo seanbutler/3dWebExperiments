@@ -3,13 +3,12 @@ a = 1
 b = 2
 c = a + b
 
-proc myproc
+proc myproc(x, y, z)
 {
-    decl x, y, z
-    z1 = 100
-    while (z1)
+    z = 100
+    while (z)
     {
-        z1 = z1 - 1
+        z = z - 1
     }
 }
 

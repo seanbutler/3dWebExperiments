@@ -148,11 +148,7 @@ std::shared_ptr<ASTNode> Parser::ParseIdentList() {
 
 }
 
-
-
-
 // ----------------------------------------------------------------------
-
 
 std::shared_ptr<ASTNode> Parser::ParseAssignment() {
 
@@ -449,18 +445,32 @@ std::shared_ptr<ASTNode> Parser::ParseProcedure() {
 
             tokenItor++;
 
-            if ( tokenItor->kind == TokenEnum::SYM_LBRACES) {
+            if ( tokenItor->kind == TokenEnum::SYM_LPAREN) {
                 tokenItor++;
 
-                blockNodeSP = ParseBlock();
-                statementNodeSP->children.push_back(blockNodeSP);
+                // PUT CODE TO PARSE VAR LIST HERE
+                varsListNodeSP = ParseIdentList();
+                statementNodeSP->children.push_back(varsListNodeSP);
 
-                if (tokenItor->kind == TokenEnum::SYM_RBRACES) {
+                if (tokenItor->kind == TokenEnum::SYM_RPAREN) {
                     tokenItor++;
 
-                    return statementNodeSP;
+                    if ( tokenItor->kind == TokenEnum::SYM_LBRACES) {
+                        tokenItor++;
+
+                        blockNodeSP = ParseBlock();
+                        statementNodeSP->children.push_back(blockNodeSP);
+
+                        if (tokenItor->kind == TokenEnum::SYM_RBRACES) {
+                            tokenItor++;
+
+                            return statementNodeSP;
+                        }
+                    }
                 }
             }
+
         }
     }
 }
+
