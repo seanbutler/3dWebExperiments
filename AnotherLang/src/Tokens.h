@@ -14,7 +14,7 @@ enum TokenTypeEnum : int {
 enum TokenEnum : int {
     KWD_DECL,
     KWD_CONST,
-    KWD_MUTABLE,
+//    KWD_MUTABLE,
 
     KWD_IF,
     KWD_ELSE,
@@ -24,6 +24,7 @@ enum TokenEnum : int {
     KWD_FUNC,
     KWD_PROC,
     KWD_THREAD,
+    KWD_RETURN,
     KWD_EXIT,
 
     SYM_ASSIGN,

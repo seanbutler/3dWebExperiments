@@ -28,8 +28,8 @@ public:
     {
         id = gid++;
         tag = boost::uuids::random_generator()();
-        value = "novalue";
         type = "notype";
+        value = "novalue";
         std::cout << tag << " --- " << value << std::endl;
     }
 
